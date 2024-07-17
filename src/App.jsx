@@ -5,22 +5,24 @@ import Horarios from "./components/horarios/horarios";
 
 function App() {
   return (
-    <Router>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/horarios">Horarios</Link>
-          </li>
-        </ul>
-      </nav>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/horarios" element={<Horarios/>} />
-      </Routes>
-    </Router>
+    <div>
+      <Router>
+        <nav  className="header">
+          <ul className="lista">
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/horarios">Horarios</Link>
+            </li>
+          </ul>
+        </nav>
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/horarios" element={<Horarios />}/>
+        </Routes>
+      </Router>
+    </div>
   );
 }
 
