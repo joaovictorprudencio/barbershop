@@ -8,7 +8,7 @@ const Header = () => {
     <div>
       <Router>
         <nav className={styles.header}>
-          <ul>
+          <ul className={styles.lista}>
             <li>
               <Link to="/horarios">Horarios</Link>
             </li>
@@ -22,7 +22,10 @@ const Header = () => {
         </nav>
         <Routes>
           <Route path="/" element={<Home />} />
+         
           <Route path="/horarios" element={<Horarios />} />
+          
+          
         </Routes>
       </Router>
     </div>
