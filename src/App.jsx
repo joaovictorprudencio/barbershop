@@ -1,6 +1,7 @@
 import Home from "./components/home/Home";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import "./App.css";
+import imagem from './assets/imagem.jpg'
 import Horarios from "./components/horarios/horarios";
 
 function App() {
@@ -17,6 +18,8 @@ function App() {
             </li>
           </ul>
         </nav>
+           
+        {/* <img src={imagem} alt="" />  */}
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/horarios" element={<Horarios />}/>
