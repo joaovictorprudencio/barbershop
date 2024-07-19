@@ -1,30 +1,11 @@
-import Home from "./components/home/Home";
+
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import "./App.css";
-import imagem from './assets/imagem.jpg'
-import Horarios from "./components/horarios/horarios";
-
+import Header from "./components/header/Header";
 function App() {
   return (
     <div>
-      <Router>
-        <nav  className="header">
-          <ul className="lista">
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/horarios">Horarios</Link>
-            </li>
-          </ul>
-        </nav>
-           
-        {/* <img src={imagem} alt="" />  */}
-        <Routes>
-          <Route path="/" element={<Home/>}/>
-          <Route path="/horarios" element={<Horarios />}/>
-        </Routes>
-      </Router>
+        <Header/>
     </div>
   );
 }
