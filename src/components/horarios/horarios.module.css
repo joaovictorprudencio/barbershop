@@ -1,0 +1,42 @@
+.corpo{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    height: 600px;
+}
+
+
+
+
+.tabela{
+    background-image: url('./img/ferramentas.jfif'); /* ajuste o caminho conforme necessário */
+    background-size: cover; /* cobre todo o elemento */
+    background-position: center; /* centraliza a imagem */
+    height: 300px; /* define a altura da div */
+    width: 100%; /* define a largura da div */
+    padding-left: 50px;
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+}
+
+.precos{
+    font-family: "Roboto", sans-serif;
+    font-size: 25px;
+    color: aliceblue;
+}
+
+.item{
+
+}
+
+@media (max-width: 600px){
+
+.tabela{
+    background-size: cover;
+    height: 200px;
+}
+
+
+
+}

@@ -9,6 +9,8 @@ import {
 import styles from "./Header.module.css";
 import Servicos from "../serviços/Sericos";
 
+
+
 const Header = () => {
   return (
     <div>
@@ -28,7 +30,7 @@ const Header = () => {
                 to="/"
                 className={({ isActive }) => (isActive ? styles.active : "")}
               >
-                Home
+                Barbearia
               </NavLink>
             </li>
             <li>
