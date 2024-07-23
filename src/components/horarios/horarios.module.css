@@ -18,16 +18,19 @@
     display: flex;
     gap: 30px;
     flex-direction: column;
+    padding-top: 30px;
 }
 
 .precos{
     font-family: "Roboto", sans-serif;
-    font-size: 25px;
+    font-size: 10px;
     color: aliceblue;
+    display: flex;
+ 
 }
 
 .item{
-
+margin-left: 20px;
 }
 
 @media (max-width: 600px){
