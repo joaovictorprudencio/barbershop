@@ -1,0 +1,10 @@
+.corpo{
+  display: flex;  
+  gap: 200px;
+}
+
+.servico{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
