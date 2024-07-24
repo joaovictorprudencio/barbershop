@@ -5,7 +5,7 @@ const Horarios = () => {
     <div className={styles.corpo}>
       <div className={styles.tabela}>
         <div className={styles.precos}>
-          <Preco />
+          <Preco/>
         </div>
       </div>
       
