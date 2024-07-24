@@ -1,5 +1,6 @@
 import Horarios from "../horarios/horarios";
 import Home from "../home/Home";
+import logo from "./img/logo.png";
 import {
   BrowserRouter as Router,
   Route,
@@ -9,13 +10,12 @@ import {
 import styles from "./Header.module.css";
 import Servicos from "../serviços/Sericos";
 
-
-
 const Header = () => {
   return (
     <div>
       <Router>
         <nav className={styles.header}>
+          <img className={styles.logo} src={logo} alt="" />
           <ul className={styles.lista}>
             <li>
               <NavLink
@@ -25,6 +25,7 @@ const Header = () => {
                 Horarios
               </NavLink>
             </li>
+
             <li>
               <NavLink
                 to="/"

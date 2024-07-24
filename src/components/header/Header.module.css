@@ -1,16 +1,24 @@
 .header {
   background-color: black;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  height: 50px;
+  height: 100px;
 }
+
+.logo{
+  width: 30px;
+  height: 30px;
+  color: aliceblue;
+}
+
 
 .lista {
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
-  margin-top: 12px;
-  gap: 200px;
+  margin-top: 20px;
+  gap: 100px;
   list-style: none;
   background-color: rgb(0, 0, 0);
   color: rgb(176, 176, 177);
@@ -34,4 +42,19 @@
   background-color: rgb(179, 102, 15);
   bottom: -10px;
   left: 0;
+}
+
+@media (max-width: 600px) {
+ .header{
+  flex-direction: column;
+  height: auto;
+  padding: 20px;
+ }
+
+ .lista{
+  gap: 75px;
+ }
+
+ 
+
 }
