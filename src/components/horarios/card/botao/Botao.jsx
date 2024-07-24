@@ -1,11 +1,13 @@
-import Botao from './Botao.module.css';
+import styles from "./Botao.module.css";
 
-const Botao = () =>{
-     <div>
-        <button>
-            <p>Marcar Horario</p>
-        </button>
-     </div>
-}
+const Botao = () => {
+  return (
+    <div>
+      <button className={styles.botao}>
+        <p>Marcar Horario</p>
+      </button>
+    </div>
+  );
+};
 
 export default Botao;

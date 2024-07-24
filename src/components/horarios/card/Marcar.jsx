@@ -1,5 +1,6 @@
 import styles from "./Marcar.module.css";
 import relogio from "../img/relogioCerto.png";
+import Botao from "./botao/Botao";
 const Marcar = () => {
   return (
     <div className={styles.corpo}>
@@ -10,6 +11,7 @@ const Marcar = () => {
         </div>
         <h3 className={styles.semana}>segunda á sabado</h3>
         <h5 className={styles.horas}>9:00 -12:00 ás 14:00 - 20:00</h5>
+        <Botao/>
       </div>
     </div>
   );
