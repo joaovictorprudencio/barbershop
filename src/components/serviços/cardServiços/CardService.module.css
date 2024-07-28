@@ -1,13 +1,43 @@
-.componente{
-   margin-top: 30px;
-    background-color: rgb(54, 54, 54);
-    width: 600px;
-    height: 200px;
-    border-radius: 12px;
+.componente {
+  margin-top: 30px;
+  background-color: rgb(54, 54, 54);
+  width: 600px;
+  height: 200px;
+  border-radius: 12px;
+  display: flex;
 }
 
-@media(max-width:700px){
-    .componente{
-        width: 350px;
-    }
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 350px;
+  height: 170px;
+  margin-top: 10px;
+  margin-left: 15px;
+  font-family: "Roboto";
+}
+
+.titulo{
+  color: rgb(231, 112, 14);
+}
+.texto{
+  margin-top: 10px;
+  color: rgb(141, 141, 141);
+
+}
+
+.imagem {
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  width: 200px;
+  height: 170px;
+}
+
+@media (max-width: 700px) {
+  .componente {
+    width: 350px;
+  }
 }
