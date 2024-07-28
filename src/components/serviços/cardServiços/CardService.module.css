@@ -1,0 +1,13 @@
+.componente{
+   margin-top: 30px;
+    background-color: rgb(54, 54, 54);
+    width: 600px;
+    height: 200px;
+    border-radius: 12px;
+}
+
+@media(max-width:700px){
+    .componente{
+        width: 350px;
+    }
+}

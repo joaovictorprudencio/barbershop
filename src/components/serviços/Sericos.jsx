@@ -1,7 +1,10 @@
+import CardService from "./cardServiços/CardService";
+import styles from './Servicos.module.css'
+
 const Servicos = () => {
   return(
-    <div>
-        <h1>tela de serviços</h1>
+    <div className={styles.paginaService} >
+        <CardService/>
     </div>
   )
 }
