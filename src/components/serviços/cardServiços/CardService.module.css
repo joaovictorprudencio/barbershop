@@ -1,6 +1,6 @@
 .componente {
   margin-top: 30px;
-  background-color: rgb(54, 54, 54);
+  background-color: rgb(27, 27, 27);
   width: 600px;
   height: 200px;
   border-radius: 12px;
@@ -10,34 +10,55 @@
 .content {
   display: flex;
   flex-direction: column;
-  align-items: center;
   width: 350px;
   height: 170px;
   margin-top: 10px;
-  margin-left: 15px;
+  margin-left: 12px;
   font-family: "Roboto";
 }
 
 .titulo{
+  margin-left: 20px;
+  margin-top: 12px;
   color: rgb(231, 112, 14);
 }
-.texto{
-  margin-top: 10px;
-  color: rgb(141, 141, 141);
-
+.texto {
+  margin-top: 40px;
+  margin-left: 6px ;
+  color: rgb(116, 116, 116);
 }
 
 .imagem {
   margin-left: 10px;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 10px;
   border-radius: 12px;
-  width: 200px;
-  height: 170px;
+  width: 220px;
+  height: 150px;
 }
 
 @media (max-width: 700px) {
   .componente {
-    width: 350px;
+    width: 360px;
+    height: 160px;
+  }
+
+  .titulo{
+    font-size: 17px;
+    color: rgb(231, 112, 14);
+  }
+  .texto{
+    font-size: 15px;
+    margin-top: 10px;
+  
+  }
+  
+  .imagem {
+    margin-left: 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    width: 160px;
+    height: 116px;
   }
 }
