@@ -1,9 +1,9 @@
-
-
+import styles from './Home.module.css'
+import Mapa from './CarMapa/Mapa'
 const home = () => {
     return (
-      <div>
-        <h1>home page </h1>
+      <div className={styles.barbearia}>
+       < Mapa/>
       </div>
     );
   };
