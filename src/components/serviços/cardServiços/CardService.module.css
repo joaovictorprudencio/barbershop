@@ -1,5 +1,5 @@
 .componente {
-  margin-top: 30px;
+  margin-top: 25px;
   background-color: rgb(27, 27, 27);
   width: 600px;
   height: 200px;
@@ -18,7 +18,7 @@
 }
 
 .titulo{
-  margin-left: 20px;
+  margin-left: 10px;
   margin-top: 12px;
   color: rgb(231, 112, 14);
 }
@@ -48,7 +48,7 @@
     color: rgb(231, 112, 14);
   }
   .texto{
-    font-size: 15px;
+    font-size: 13px;
     margin-top: 10px;
   
   }
