@@ -1,7 +1,8 @@
 import styles from "./horarios.module.css";
 import Preco from "./preços/Preco";
 import Marcar from "./card/Marcar";
-import Footer from '../footer/Footer'
+import CardDisponiveis from "./disponiveis/CardDisponiveis";
+import Footer from "../footer/Footer";
 const Horarios = () => {
   return (
     <div className={styles.corpo}>
@@ -11,7 +12,8 @@ const Horarios = () => {
         </div>
       </div>
       <Marcar />
-      <Footer/>
+      <CardDisponiveis />
+      <Footer />
     </div>
   );
 };
