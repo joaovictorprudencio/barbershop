@@ -1,0 +1,28 @@
+.item{
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    width: 300px;
+    gap: 14px;
+    margin-top: 8px;
+    background-color: rgb(99, 99, 99);
+    color: aliceblue;
+    padding-bottom: 20px;
+}
+
+.data{
+    font-family: "Roboto";
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.dado{
+    font-family: "Roboto";
+    margin-left: 20px;
+}
+
+
+
+@media (max-width: 700px){
+
+}
