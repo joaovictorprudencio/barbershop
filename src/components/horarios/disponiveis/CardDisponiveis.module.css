@@ -6,8 +6,10 @@
 }
 
 .titulo{
+    padding-top: 10px;
     font-family: "Roboto" ,sans-serif;
-    color: rgba(230, 68, 10, 0.788);
+    font-size: 25px;
+    color: rgb(194, 78, 36);
 }
 
 .card{
@@ -19,4 +21,10 @@
     height: auto;
     border-radius: 12px;
     background-color: black;
+}
+
+@media (max-width: 700px){
+  .card{
+    width:370px ;
+  }
 }

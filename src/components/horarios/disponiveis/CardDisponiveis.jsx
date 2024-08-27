@@ -11,7 +11,9 @@ HorarioFinal.setHours(horas, minutos,0,0);
 
 HorarioFinal.setMinutes(HorarioFinal.getMinutes() + 30);
 
-const horaFormatada = HorarioFinal.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+ let hora = HorarioFinal.getHours();
+  let minuto = HorarioFinal.getMinutes();
+  let horaFormatada = `${hora}:${minuto}`;
 
 const CardDisponiveis = () => {
 
@@ -21,8 +23,14 @@ const CardDisponiveis = () => {
   return (
     <div className={styles.component}>
         <div className={styles.card}>
-            <h3 className={styles.titulo}>disponiveis para hoje</h3>
+            <h1 className={styles.titulo}>disponiveis para hoje</h1>
          <Item
+           Horario={horario}
+         />
+          <Item
+           Horario={horario}
+         />
+          <Item
            Horario={horario}
          />
          

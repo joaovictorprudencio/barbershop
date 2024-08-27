@@ -1,28 +1,78 @@
-.item{
-    display: flex;
-    flex-direction: column;
-    border-radius: 12px;
-    width: 300px;
-    gap: 14px;
-    margin-top: 8px;
-    background-color: rgb(99, 99, 99);
-    color: aliceblue;
-    padding-bottom: 20px;
+.item {
+  display: flex;
+  justify-content: center;
+  border-radius: 12px;
+  width: 450px;
+  height: 120px;
+  gap: 180px;
+  margin-top: 8px;
+  background-color: rgb(99, 99, 99);
+  color: aliceblue;
+  padding-bottom: 12px;
+  margin-bottom: 14px;
 }
 
-.data{
-    font-family: "Roboto";
-    margin-top: 20px;
-    margin-left: 20px;
+.texto {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.dado{
-    font-family: "Roboto";
-    margin-left: 20px;
+.data {
+  font-family: "Roboto";
+  margin-top: 20px;
 }
 
+.dado {
+  font-family: "Roboto";
+}
 
+.imagemCheck {
+  width: 30px;
+  height: 30px;
+}
 
-@media (max-width: 700px){
+.icone {
+  display: flex;
+  margin-top: 90px;
+}
 
+.status {
+  font-size: 15px;
+  font-family: "Roboto";
+  margin-top: 10px;
+  margin-right: 4px;
+}
+
+@media (max-width: 700px) {
+  .item {
+    width: 340px;
+    height: 110px;
+    gap: 80px;
+  }
+
+  .data {
+    font-size: 19px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .texto {
+    margin-top: 5px;
+    gap: 10px;
+  }
+
+  .icone{
+    margin-top: 82px;
+  }
+
+  .status{
+    margin-top: 5px;
+    margin-right: 3px;
+  }
+
+  .imagemCheck {
+    width: 30px;
+    height: 30px;
+  }
 }
