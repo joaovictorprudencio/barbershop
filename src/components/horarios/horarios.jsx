@@ -3,6 +3,7 @@ import Preco from "./preços/Preco";
 import Marcar from "./card/Marcar";
 import CardDisponiveis from "./disponiveis/CardDisponiveis";
 import Footer from "../footer/Footer";
+import CardMarcar from "./CardMarcar/CardMarcar";
 const Horarios = () => {
   return (
     <div className={styles.corpo}>
@@ -13,6 +14,7 @@ const Horarios = () => {
       </div>
       <Marcar />
       <CardDisponiveis />
+      <CardMarcar/>
       <Footer />
     </div>
   );

@@ -1,6 +1,4 @@
 .botao {
-  margin-left: 130px;
-  margin-top: 110px;
   width: 250px;
   height: 50px;
   border-style: none;
@@ -13,8 +11,6 @@
 
 @media (max-width: 700px) {
     .botao{
-        margin-top: 80px;
-        margin-left: 50px;
         font-size: 17px;
     }
 }

@@ -1,0 +1,26 @@
+.CardMarcar{
+    background-color: black;
+    width: 800px;
+    margin-top: 30px;
+    margin-left: 255px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: rgb(240, 115, 14);
+    font-family: "Roboto",sans-serif;
+}
+
+.tiutlo{
+  margin-top: 10px;
+}
+
+@media (max-width: 700px) {
+  .CardMarcar{
+     width: 360px;
+     margin-left: 6px;
+  }
+}

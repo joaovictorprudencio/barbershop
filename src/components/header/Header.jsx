@@ -1,14 +1,17 @@
 import Horarios from "../horarios/horarios";
 import Home from "../home/Home";
 import logo from "./img/logo.png";
+import Botao from "../horarios/card/botao/Botao";
 import {
   BrowserRouter as Router,
   Route,
   Routes,
   NavLink,
+  useLocation,
 } from "react-router-dom";
 import styles from "./Header.module.css";
 import Servicos from "../serviços/Sericos";
+import TelaMarcar from "../TelaMarcar/TelaMarcar";
 
 const Header = () => {
   return (
@@ -48,6 +51,8 @@ const Header = () => {
           <Route path="/" element={<Home />} />
           <Route path="/horarios" element={<Horarios />} />
           <Route path="/serviços" element={<Servicos />} />
+          <Route path="/marcar" element = {<Botao/>}/>
+          <Route path="/marcar/form" element = {<TelaMarcar/>}/>
         </Routes>
       </Router>
     </div>
