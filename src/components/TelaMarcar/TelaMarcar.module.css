@@ -32,7 +32,11 @@
 input {
   font-family: "Roboto";
   width: 200px;
-  background-color: rgb(124, 124, 124);
+  border: none;
+  border-radius: 12px;
+  padding: 5px;
+  color: rgb(155, 155, 155);
+  background-color: rgb(61, 61, 61);
 }
 
 .icon {
