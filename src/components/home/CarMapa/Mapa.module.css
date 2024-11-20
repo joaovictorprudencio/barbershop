@@ -1,13 +1,20 @@
-.mapa{
+.mapaCard{
     background-color: black;
     margin-top: 20px;
     width: 600px;
     height: 200px;
     border-radius: 20px;
+    color: aliceblue;
+}
+
+.Mapa{
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
 }
 
 @media (max-width:700px){
-    .mapa {
+    .mapaCard {
         width: 350px;
     }
 }
