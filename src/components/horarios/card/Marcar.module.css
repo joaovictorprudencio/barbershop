@@ -24,6 +24,11 @@
   color: rgb(199, 89, 49);
 }
 
+.horariosInput {
+  background-color: rgb(190, 16, 16);
+  margin-top: 40px;
+}
+
 
 .semana {
   margin-top: 50px;
