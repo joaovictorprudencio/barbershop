@@ -42,7 +42,7 @@ const TelaMarcar = () => {
         </LocalizationProvider>
 
         
-          <Box sx={{  marginTop: 5 , width:100}}>
+          <Box sx={{  marginTop: 5 , width:200}}>
             <FormControl fullWidth>
               <InputLabel variant="standard" htmlFor="uncontrolled-native">
                 Horario
