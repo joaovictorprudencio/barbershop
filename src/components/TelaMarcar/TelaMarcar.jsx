@@ -22,7 +22,17 @@ const TelaMarcar = () => {
   const selecionarHorario = (horarioSelecionado) => {
     setHorario(horarioSelecionado);
   };
-
+  const times = [
+    {
+      value: '09:00'
+    },
+    {
+      value: '09:30'
+    },
+    {
+      value: '16:30'
+    }
+  ]
   return (
     <div className={styles.componentTela}>
       <div className={styles.cardForm}>
@@ -37,6 +47,7 @@ const TelaMarcar = () => {
               format="DD-MM-YYYY"
               value={value}
               onChange={(newValue) => setValue(newValue)}
+              minDate={dayjs()}
             />
           </DemoContainer>
         </LocalizationProvider>
@@ -54,9 +65,11 @@ const TelaMarcar = () => {
                   id: "uncontrolled-native",
                 }}
               >
-                <option value={10}>9:00</option>
-                <option value={20}>9:30</option>
-                <option value={30}>16:30</option>
+                {times.map((time) => (
+                  <option value={time.value}>
+                    {time.value}
+                  </option>
+                ))}
               </NativeSelect>
             </FormControl>
           </Box>

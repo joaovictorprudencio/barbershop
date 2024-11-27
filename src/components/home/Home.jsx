@@ -7,8 +7,12 @@ import Button from "@mui/material/Button";
 const home = () => {
   return (
     <div className={styles.barbearia}>
-      <Mapa />
-      <Promocao />
+      <section style={{
+        height: '100vh'
+      }}> 
+        <Mapa />
+        <Promocao />
+      </section>
       <Footer />
     </div>
   );

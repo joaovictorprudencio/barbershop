@@ -43,6 +43,15 @@
 }
 
 @media (max-width: 600px) {
+  
+  .corpo {
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(73, 73, 73);
+  }
+
+
   .card {
     width: 340px;
     height: 150px;
