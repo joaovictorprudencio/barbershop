@@ -14,7 +14,10 @@ const Horarios = () => {
       </div>
       <Marcar />
       <CardDisponiveis />
-      <CardMarcar/>
+      <div className={styles.cardContente}>
+        <CardMarcar/>
+      </div>
+      
       <Footer />
     </div>
   );

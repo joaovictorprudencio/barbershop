@@ -35,7 +35,10 @@ const TelaMarcar = () => {
   ]
   return (
     <div className={styles.componentTela}>
-      <div className={styles.cardForm}>
+
+      <section className={styles.cardContent}>
+ <div className={styles.cardForm}>
+
         <div className={styles.titulo}>
           <img className={styles.icon} src={calendario} alt="" />
           <h3>agendamento</h3>
@@ -74,6 +77,10 @@ const TelaMarcar = () => {
             </FormControl>
           </Box>
       </div>
+      </section>
+     
+
+
       <Footer />
     </div>
   );

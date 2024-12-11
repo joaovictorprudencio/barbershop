@@ -2,7 +2,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   background-color: rgb(73, 73, 73);
+  
 }
 
 .cardForm {
@@ -18,7 +20,6 @@
   background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
   font-weight: 100;
-  font-family: 'Roboto';
 
 
 }
@@ -102,6 +103,10 @@ input {
 
 @media (max-width: 700px) {
   .cardForm {
+    width: 360px;
+  }
+
+  .cardContent{
     width: 360px;
     height: 100vh;
   }
