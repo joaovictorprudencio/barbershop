@@ -104,6 +104,7 @@ input {
 @media (max-width: 700px) {
   .cardForm {
     width: 360px;
+    height: 500px;
   }
 
   .cardContent{
