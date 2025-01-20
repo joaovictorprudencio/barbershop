@@ -13,6 +13,7 @@ import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
 import TextField from "@mui/material/TextField";
+import Button from '@mui/material/Button';
 
 const TelaMarcar = () => {
 
@@ -23,31 +24,12 @@ const TelaMarcar = () => {
   const [horario, sethorario] = useState("");
 
   const selectTime = (event) => {
-    sethorario(event.target.value || "");
-    console.log(` horario: ${horario} data ${value}`)
-
+    const seletedTime = event.target.value;
+    sethorario(seletedTime);
+    console.log(` horario: ${ event.target.value} data ${value}`)
   };
 
-  const times = [
-    {
-      value: "09:00",
-    },
-    {
-      value: "09:30",
-    },
-    {
-      value: "10:00",
-    },
-    {
-      value: "10:30",
-    },
-    {
-      value: "11:00",
-    },
-    {
-      value: "11:30",
-    },
-  ];
+ 
 
   return (
     <div className={styles.componentTela}>
@@ -72,32 +54,27 @@ const TelaMarcar = () => {
           </Box>
 
           <Box sx={{ marginTop: 5, width: 200 }}>
-          <FormControl fullWidth>
-    <InputLabel
-      variant="standard"
-      htmlFor="uncontrolled-native"
-      shrink={horario !== ""}
-    >
-      
-    </InputLabel>
-    <NativeSelect
-      value={horario}
-      onChange={selectTime}
-      inputProps={{
-        name: "horario",
-        id: "uncontrolled-native",
-      }}
-    >
-      <option value="" disabled>
-        Selecione um horário
-      </option>
-      {times.map((time, index) => (
-        <option key={index} value={time.value}>
-          {time.value}
-        </option>
-      ))}
-    </NativeSelect>
-  </FormControl>
+            <FormControl fullWidth>
+              <InputLabel
+                variant="standard"
+                htmlFor="uncontrolled-native"
+                shrink={horario === "" || horario !== ""}
+              >
+                Horario
+              </InputLabel>
+              <NativeSelect
+                value={horario}
+                onChange={selectTime}
+                inputProps={{
+                  name: "horario",
+                  id: "uncontrolled-native",
+                }}
+              >
+                <option value={"9:00"}>9:00</option>
+                <option value={"10:00"}>10:00</option>
+                <option value={"11:00"}>11:00</option>
+              </NativeSelect>
+            </FormControl>
           </Box>
 
           <Box
@@ -117,6 +94,11 @@ const TelaMarcar = () => {
           >
             <TextField id="standard-basic" label="Numero de contato" variant="standard" />
           </Box>
+
+          <Button variant="contained" sx={{ marginTop: 5 , backgroundColor: 'rgb(228, 110, 15);',  fontFamily: 'Roboto, sans-serif' }} >
+            agendar 
+        </Button> 
+          
         </div>
       </section>
       <Footer />
