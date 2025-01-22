@@ -95,7 +95,7 @@ const TelaMarcar = () => {
             <TextField id="standard-basic" label="Numero de contato" variant="standard" />
           </Box>
 
-          <Button variant="contained" sx={{ marginTop: 5 , backgroundColor: 'rgb(228, 110, 15);',  fontFamily: 'Roboto, sans-serif' }} >
+          <Button variant="contained" sx={{ marginTop: 5 , backgroundColor: 'rgb(228, 110, 15);',  width: 130 , height: 40 }} >
             agendar 
         </Button> 
           
