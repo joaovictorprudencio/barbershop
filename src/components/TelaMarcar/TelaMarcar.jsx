@@ -15,7 +15,10 @@ import NativeSelect from "@mui/material/NativeSelect";
 import TextField from "@mui/material/TextField";
 import Button from '@mui/material/Button';
 
+
+
 const TelaMarcar = () => {
+
 
   const [value, setValue] = useState(dayjs());
 
@@ -29,7 +32,12 @@ const TelaMarcar = () => {
     console.log(` horario: ${ event.target.value} data ${value}`)
   };
 
- 
+  const pixKey = import.meta.env.VITE_KEY;
+
+  const seeKey = () => {
+    alert(pixKey);
+  }
+
 
   return (
     <div className={styles.componentTela}>
@@ -98,12 +106,9 @@ const TelaMarcar = () => {
           <div className={styles.Paymment}>
           <p> 50% do valor <br /> garante sua reserva.</p>
           </div>
-          <Button variant="contained" sx={{ marginTop: 5 , backgroundColor: 'rgb(228, 110, 15);',  width: 130 , height: 40 }} >
+          <Button variant="contained" onClick={seeKey} sx={{ marginTop: 5 , backgroundColor: 'rgb(228, 110, 15);',  width: 130 , height: 40 }} >
             agendar 
         </Button> 
-
-        
-          
         </div>
       </section>
       <Footer />
