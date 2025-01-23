@@ -95,9 +95,14 @@ const TelaMarcar = () => {
             <TextField id="standard-basic" label="Numero de contato" variant="standard" />
           </Box>
 
+          <div className={styles.Paymment}>
+          <p> 50% do valor <br /> garante sua reserva.</p>
+          </div>
           <Button variant="contained" sx={{ marginTop: 5 , backgroundColor: 'rgb(228, 110, 15);',  width: 130 , height: 40 }} >
             agendar 
         </Button> 
+
+        
           
         </div>
       </section>

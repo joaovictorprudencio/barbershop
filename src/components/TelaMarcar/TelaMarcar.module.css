@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   background-color: rgb(73, 73, 73);
-  
+
 }
 
 .cardForm {
@@ -57,7 +57,7 @@ input {
 
 }
 
-.selecao{
+.selecao {
   display: flex;
   overflow-x: scroll;
 }
@@ -74,18 +74,36 @@ input {
   font-weight: bold;
 }
 
+.Paymment {
+  margin-top: 50px;
+  color: red;
+}
+
 @media (max-width: 700px) {
+
   .cardForm {
     width: 360px;
-    height: 560px;
+    height: 660px;
   }
 
-  .cardContent{
+  .cardContent {
     width: 360px;
     height: 100vh;
   }
 
   .contentData {
     flex-direction: column;
+  }
+
+  .Paymment {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+   .Paymment p {
+    text-align: center;
+    color: red;
   }
 }
