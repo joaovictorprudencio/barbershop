@@ -14,38 +14,43 @@ import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
 import TextField from "@mui/material/TextField";
 import Button from '@mui/material/Button';
-
+import WhatsAppIcon from "./img/whatsapp.png";
+import pixcopy from "./img/document copi.png";
 
 
 const TelaMarcar = () => {
 
- const pixKey = import.meta.env.VITE_KEY;
+  const pixKey = import.meta.env.VITE_KEY;
 
   const [value, setValue] = useState(dayjs());
 
   const [numberPhone, setnumberPhone] = useState("");
 
-  const [ name , setName] = useState("")
+  const [name, setName] = useState("")
 
   const [horario, sethorario] = useState("");
 
   const selectTime = (event) => {
     const seletedTime = event.target.value;
     sethorario(seletedTime);
-    console.log(` horario: ${ event.target.value} data ${value}`)
+    console.log(` horario: ${event.target.value} data ${value}`)
   };
 
 
   const handleNameBlur = (event) => {
-    setName(event.target.value); 
+    setName(event.target.value);
   };
 
   const handleNumberBlur = (event) => {
-    setnumberPhone(event.target.value); 
+    setnumberPhone(event.target.value);
   };
 
   const stateObject = () => {
     alert(`nome: ${name} nome: ${numberPhone} nome: ${horario} nome: ${value}`)
+  }
+
+  const confirm = () => {
+   alert("chave pix copiada")
   }
 
 
@@ -103,12 +108,12 @@ const TelaMarcar = () => {
             autoComplete="off"
           >
             <TextField
-             id="standard-basic"
+              id="standard-basic"
               label="Nome"
-             variant="standard"
-             onChange={handleNameBlur}
-             value={name}
-              />
+              variant="standard"
+              onChange={handleNameBlur}
+              value={name}
+            />
 
           </Box>
 
@@ -119,19 +124,25 @@ const TelaMarcar = () => {
             autoComplete="off"
           >
             <TextField id="standard-basic"
-             label="Numero de contato"
+              label="Numero de contato"
               variant="standard"
               onChange={handleNumberBlur}
               value={numberPhone}
-               />
+            />
           </Box>
 
           <div className={styles.Paymment}>
-          <p> 50% do valor <br /> garante sua reserva.</p>
+            <p> 50% do valor <br /> garante sua reserva.</p>
           </div>
-          <Button variant="contained" onClick={stateObject} sx={{ marginTop: 5 , backgroundColor: 'rgb(228, 110, 15);',  width: 130 , height: 40 }} >
-            agendar 
-        </Button> 
+
+          <div className={styles.firstStep}>
+            <p className={styles.messege}>.1 Copie a chave pix </p>
+            <img className={styles.copyImage} src={pixcopy} 
+            alt="" />
+          </div>
+          <Button variant="contained" onClick={stateObject} sx={{ marginTop: 5, backgroundColor: 'rgb(228, 110, 15);', width: 130, height: 40 }} >
+            agendar
+          </Button>
         </div>
       </section>
       <Footer />
