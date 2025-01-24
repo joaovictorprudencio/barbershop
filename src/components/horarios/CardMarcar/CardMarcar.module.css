@@ -1,8 +1,7 @@
 .CardMarcar{
 
-    width: 100vb;
-    margin-top: 30px;
-    margin-left: 255px;
+    background-color: black;
+    width: 800px;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
@@ -12,6 +11,15 @@
     padding-bottom: 30px;
     color: rgb(240, 115, 14);
     font-family: "Roboto",sans-serif;
+   margin-top: 30px;
+}
+
+.bodyComponent{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .tiutlo{
@@ -21,6 +29,5 @@
 @media (max-width: 700px) {
   .CardMarcar{
      width: 360px;
-     margin-left: 6px;
   }
 }
