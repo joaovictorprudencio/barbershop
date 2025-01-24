@@ -5,8 +5,7 @@ import Button from '@mui/material/Button';
 const CardMarcar = () =>{
     return(
         <div className={styles.CardMarcar}>
-              <h2 className={styles.titulo}>marcar outra data</h2>
-              <BotaoComponente/>
+    
         </div>
     )
 }

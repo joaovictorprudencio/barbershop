@@ -19,10 +19,13 @@ import Button from '@mui/material/Button';
 
 const TelaMarcar = () => {
 
+ const pixKey = import.meta.env.VITE_KEY;
 
   const [value, setValue] = useState(dayjs());
 
-  const [number, setnumber] = useState("");
+  const [numberPhone, setnumberPhone] = useState("");
+
+  const [ name , setName] = useState("")
 
   const [horario, sethorario] = useState("");
 
@@ -32,11 +35,19 @@ const TelaMarcar = () => {
     console.log(` horario: ${ event.target.value} data ${value}`)
   };
 
-  const pixKey = import.meta.env.VITE_KEY;
 
-  const seeKey = () => {
-    alert(pixKey);
+  const handleNameBlur = (event) => {
+    setName(event.target.value); 
+  };
+
+  const handleNumberBlur = (event) => {
+    setnumberPhone(event.target.value); 
+  };
+
+  const stateObject = () => {
+    alert(`nome: ${name} nome: ${numberPhone} nome: ${horario} nome: ${value}`)
   }
+
 
 
   return (
@@ -91,7 +102,14 @@ const TelaMarcar = () => {
             noValidate
             autoComplete="off"
           >
-            <TextField id="standard-basic" label="Nome" variant="standard" />
+            <TextField
+             id="standard-basic"
+              label="Nome"
+             variant="standard"
+             onChange={handleNameBlur}
+             value={name}
+              />
+
           </Box>
 
           <Box
@@ -100,13 +118,18 @@ const TelaMarcar = () => {
             noValidate
             autoComplete="off"
           >
-            <TextField id="standard-basic" label="Numero de contato" variant="standard" />
+            <TextField id="standard-basic"
+             label="Numero de contato"
+              variant="standard"
+              onChange={handleNumberBlur}
+              value={numberPhone}
+               />
           </Box>
 
           <div className={styles.Paymment}>
           <p> 50% do valor <br /> garante sua reserva.</p>
           </div>
-          <Button variant="contained" onClick={seeKey} sx={{ marginTop: 5 , backgroundColor: 'rgb(228, 110, 15);',  width: 130 , height: 40 }} >
+          <Button variant="contained" onClick={stateObject} sx={{ marginTop: 5 , backgroundColor: 'rgb(228, 110, 15);',  width: 130 , height: 40 }} >
             agendar 
         </Button> 
         </div>
