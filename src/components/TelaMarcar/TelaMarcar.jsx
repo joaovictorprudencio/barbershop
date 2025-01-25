@@ -94,9 +94,15 @@ const TelaMarcar = () => {
                   id: "uncontrolled-native",
                 }}
               >
+                <option value={"8:30"}>8:30</option>
                 <option value={"9:00"}>9:00</option>
                 <option value={"10:00"}>10:00</option>
+                <option value={"10:30"}>10:30</option>
                 <option value={"11:00"}>11:00</option>
+                <option value={"11:30"}>11:30</option>
+                <option value={"14:00"}>14:00</option>
+                <option value={"14:30"}>14:30</option>
+                <option value={"15:00"}>15:00</option>
               </NativeSelect>
             </FormControl>
           </Box>
@@ -140,6 +146,14 @@ const TelaMarcar = () => {
             <img className={styles.copyImage} src={pixcopy} 
             alt="" />
           </div>
+
+          <div className={styles.secondStep}>
+            <p className={styles.messege}>.2 Mande o comprovante aqui </p>
+            <img className={styles.whatsappImage} src={WhatsAppIcon} 
+            alt="" />
+          </div>
+
+
           <Button variant="contained" onClick={stateObject} sx={{ marginTop: 5, backgroundColor: 'rgb(228, 110, 15);', width: 130, height: 40 }} >
             agendar
           </Button>

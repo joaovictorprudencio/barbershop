@@ -86,11 +86,28 @@ input {
 
 .firstStep{
  display: flex;
+ gap: 10;
  margin-top: 20px;
 }
 
+
 .copyImage {
   width: 30px;
+}
+
+.secondStep{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10;
+  margin-top: 20px;
+ }
+
+
+.whatsappImage{
+  width: 30px;
+  margin-left: 50%;
+  margin-top: 10px;
 }
 
 .messege {
@@ -102,12 +119,12 @@ input {
 
   .cardForm {
     width: 360px;
-    height: 690px;
+    height: 760px;
   }
 
   .cardContent {
     width: 360px;
-    height: 110vh;
+    height: 120vh;
   }
 
   .contentData {
@@ -124,5 +141,11 @@ input {
    .Paymment p {
     text-align: center;
     color: red;
+  }
+
+  .whatsappImage{
+    width: 30px;
+    margin-left: 43%;
+    margin-top: 15px;
   }
 }
