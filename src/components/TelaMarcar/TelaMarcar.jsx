@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+// eslint-disable-next-line no-unused-vars
 import React from "react";
 import { useState, useEffect } from "react";
 import styles from "./TelaMarcar.module.css";
@@ -53,7 +55,27 @@ const TelaMarcar = () => {
    alert("chave pix copiada")
   }
 
+  const text = "texto copiado"
 
+  const handleCopy = () => {
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(pixKey)
+        .then(() => alert("Chave pix copiada!"))
+        .catch(err => fallbackCopy());
+    } else {
+      fallbackCopy();
+    }
+  };
+  
+  const fallbackCopy = () => {
+    const textArea = document.createElement("textarea");
+    textArea.value = pixKey;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textArea);
+    alert("Chave pix copiada!");
+  };
 
   return (
     <div className={styles.componentTela}>
@@ -143,7 +165,7 @@ const TelaMarcar = () => {
 
           <div className={styles.firstStep}>
             <p className={styles.messege}>.1 Copie a chave pix </p>
-            <img className={styles.copyImage} src={pixcopy} 
+            <img className={styles.copyImage} onClick={handleCopy} src={pixcopy} 
             alt="" />
           </div>
 
@@ -154,7 +176,7 @@ const TelaMarcar = () => {
           </div>
 
 
-          <Button variant="contained" onClick={stateObject} sx={{ marginTop: 5, backgroundColor: 'rgb(228, 110, 15);', width: 130, height: 40 }} >
+          <Button variant="contained" onClick={handleCopy} sx={{ marginTop: 5, backgroundColor: 'rgb(228, 110, 15);', width: 130, height: 40 }} >
             agendar
           </Button>
         </div>
