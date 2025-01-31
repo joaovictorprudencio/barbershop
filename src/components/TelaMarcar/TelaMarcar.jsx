@@ -38,6 +38,17 @@ const TelaMarcar = () => {
     console.log(` horario: ${event.target.value} data ${value}`)
   };
 
+ 
+    const number = '5585997330821';
+    const messege = "envie o comprovante pix!";
+    const encodeMessege = encodeURIComponent(messege)
+    const whatsappLink = `https://wa.me/${number}?text=${encodeMessege}`
+  
+
+  const handleRedirec = () => {
+    window.location.href = whatsappLink;
+  }
+
 
   const handleNameBlur = (event) => {
     setName(event.target.value);
@@ -170,13 +181,13 @@ const TelaMarcar = () => {
           </div>
 
           <div className={styles.secondStep}>
-            <p className={styles.messege}>.2 Mande o comprovante aqui </p>
-            <img className={styles.whatsappImage} src={WhatsAppIcon} 
+            <p className={styles.messege} >.2 Mande o comprovante aqui </p>
+            <img className={styles.whatsappImage} onClick={handleRedirec} src={WhatsAppIcon} 
             alt="" />
           </div>
 
 
-          <Button variant="contained" onClick={handleCopy} sx={{ marginTop: 5, backgroundColor: 'rgb(228, 110, 15);', width: 130, height: 40 }} >
+          <Button variant="contained" sx={{ marginTop: 5, backgroundColor: 'rgb(228, 110, 15);', width: 130, height: 40 }} >
             agendar
           </Button>
         </div>
