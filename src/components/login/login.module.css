@@ -1,0 +1,13 @@
+.page {
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center ;
+}
+
+.content {
+    width: 200px;
+    height: 500px;
+    background-color: aliceblue;
+}

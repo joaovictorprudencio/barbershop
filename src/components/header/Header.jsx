@@ -7,18 +7,25 @@ import {
   Route,
   Routes,
   NavLink,
-  useLocation,
 } from "react-router-dom";
 import styles from "./Header.module.css";
 import Servicos from "../serviços/Sericos";
 import TelaMarcar from "../TelaMarcar/TelaMarcar";
+import Login from "../login/login";
+
 
 const Header = () => {
+
+ 
+
+
   return (
     <div>
       <Router>
         <nav className={styles.header}>
+        <NavLink to="/login">
           <img className={styles.logo} src={logo} alt="" />
+        </NavLink>
           <ul className={styles.lista}>
             <li>
               <NavLink
@@ -49,6 +56,7 @@ const Header = () => {
         </nav>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/horarios" element={<Horarios />} />
           <Route path="/serviços" element={<Servicos />} />
           <Route path="/marcar" element = {<Botao/>}/>
