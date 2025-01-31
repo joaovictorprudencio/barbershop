@@ -16,8 +16,6 @@ import Login from "../login/login";
 
 const Header = () => {
 
- 
-
 
   return (
     <div>
