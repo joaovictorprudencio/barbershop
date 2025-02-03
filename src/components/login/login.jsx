@@ -4,6 +4,7 @@ import Footer from "../footer/Footer"
 import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import Button from '@mui/material/Button';
 import { FormControl, InputLabel, OutlinedInput, InputAdornment, IconButton } from "@mui/material";
 const Login = () => {
 
@@ -26,14 +27,14 @@ const Login = () => {
       <section className={style.content}>
         <h1 className={style.title}>Entrar</h1>
         <div className={style.sectionLogin}>
-          <TextField sx={{ marginTop: 5, color: '#ffff', width: 130, height: 40 }}
+          <TextField s
             id="outlined-email-input"
             label="Email"
             type="email"
             autoComplete="current-email"
           />
 
-          <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+          <FormControl  variant="outlined">
             <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
             <OutlinedInput
               id="outlined-adornment-password"
@@ -57,7 +58,13 @@ const Login = () => {
             />
           </FormControl>
         </div>
-
+          <div className={style.Paymment}>
+                    <p> Este login é apenas para profissionais cadastrados.
+                   <br /> Clientes podem agendar diretamente.</p>
+                  </div>
+          <Button variant="contained" sx={{ marginTop: 5, backgroundColor: 'rgb(228, 110, 15);', width: 130, height: 40 }} >
+           <p>Entrar</p>
+          </Button>
       </section>
 
       <Footer></Footer>
