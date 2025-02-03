@@ -1,10 +1,10 @@
-export const loginBarber = async (email, passoword) => {
-  const response = await fetch('localhost:8080/', {
+export const loginBarber = async (email, password) => {
+  const response = await fetch(`${API_URL}/auth/login`, {
     method:"POST",
     headers: {
         'Content-Type': 'application/json',  
     },
-    body: JSON.stringify({email, passoword})
+    body: JSON.stringify({email: email, password: password})
   });
 
   if (!response.ok) {
