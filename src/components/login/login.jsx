@@ -28,7 +28,7 @@ const Login = () => {
 
 
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault(); 
@@ -45,7 +45,6 @@ const Login = () => {
       window.location.href = '/serviços';
     } catch (err) {
       setError('Usuário não autenticado ');
-      console.error(err);
     } finally {
       setLoading(false);
     }
@@ -65,11 +64,13 @@ const Login = () => {
 
       <section className={style.content}>
 
-        <h1 className={style.title}>Entrar</h1>
+       
 
         {!loading &&
-
-          <><div className={style.sectionLogin}>
+          <> 
+           <h1 className={style.title}>Entrar</h1>
+          
+          <div className={style.sectionLogin}>
             <TextField s
               id="outlined-email-input"
               label="Email"
@@ -114,8 +115,8 @@ const Login = () => {
         {!!loading &&
 
           <div className={style.loading}>
-            <h1>confirmando dados</h1>
-            <CircularProgress />
+             <h1 className={style.loginMessege}>Verificando credenciais...</h1>
+            <CircularProgress size="4rem" />
           </div>
 
         }
