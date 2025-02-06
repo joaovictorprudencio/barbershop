@@ -2,7 +2,7 @@
 // eslint-disable-next-line no-unused-vars
 import React from "react";
 import { useState, useEffect } from "react";
-import styles from "./TelaMarcar.module.css";
+import styles from "./bookmarkPage.module.css";
 import calendario from "./img/calendario.png";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -20,7 +20,7 @@ import WhatsAppIcon from "./img/whatsapp.png";
 import pixcopy from "./img/document copi.png";
 
 
-const TelaMarcar = () => {
+const BookmarkPage = () => {
 
   const pixKey = import.meta.env.VITE_KEY;
 
@@ -30,11 +30,11 @@ const TelaMarcar = () => {
 
   const [name, setName] = useState("")
 
-  const [horario, sethorario] = useState("");
+  const [time, setTime] = useState("");
 
   const selectTime = (event) => {
     const seletedTime = event.target.value;
-    sethorario(seletedTime);
+    setTime(seletedTime);
     console.log(` horario: ${event.target.value} data ${value}`)
   };
 
@@ -59,7 +59,7 @@ const TelaMarcar = () => {
   };
 
   const stateObject = () => {
-    alert(`nome: ${name} nome: ${numberPhone} nome: ${horario} nome: ${value}`)
+    alert(`nome: ${name} nome: ${numberPhone} nome: ${time} nome: ${value}`)
   }
 
   const confirm = () => {
@@ -115,12 +115,12 @@ const TelaMarcar = () => {
               <InputLabel
                 variant="standard"
                 htmlFor="uncontrolled-native"
-                shrink={horario === "" || horario !== ""}
+                shrink={time === "" || time !== ""}
               >
                 Horario
               </InputLabel>
               <NativeSelect
-                value={horario}
+                value={time}
                 onChange={selectTime}
                 inputProps={{
                   name: "horario",
@@ -197,4 +197,4 @@ const TelaMarcar = () => {
   );
 };
 
-export default TelaMarcar;
+export default BookmarkPage;

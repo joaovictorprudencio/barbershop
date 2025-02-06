@@ -1,12 +1,9 @@
 import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
   NavLink,
 } from "react-router-dom";
 
 import styles from "./Botao.module.css";
-import TelaMarcar from "../../../TelaMarcar/TelaMarcar";
+
 
 const Botao = () => {
   return (
