@@ -31,13 +31,13 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
     setLoading(true);
     setError('');
 
     try {
-      const data = await loginBarber(login.email, login.password); 
+      const data = await loginBarber(login.email, login.password);
 
 
       localStorage.setItem('authToken', data.token);
@@ -64,44 +64,44 @@ const Login = () => {
 
       <section className={style.content}>
 
-       
+
 
         {!loading &&
-          <> 
-           <h1 className={style.title}>Entrar</h1>
-          
-          <div className={style.sectionLogin}>
-            <TextField s
-              id="outlined-email-input"
-              label="Email"
-              value={login.email}
-              onChange={handleChange}
-              type="email"
-              name="email"
-              autoComplete="current-email" />
+          <>
+            <h1 className={style.title}>Entrar</h1>
 
-            <FormControl variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-password"
-                type={showPassword ? 'text' : 'password'}
-                value={login.password}
+            <div className={style.sectionLogin}>
+              <TextField s
+                id="outlined-email-input"
+                label="Email"
+                value={login.email}
                 onChange={handleChange}
-                name="password"
-                endAdornment={<InputAdornment position="end">
-                  <IconButton
-                    aria-label={showPassword ? 'hide the password' : 'display the password'}
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    onMouseUp={handleMouseUpPassword}
-                    edge="end"
-                  >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>}
-                label="Password" />
-            </FormControl>
-          </div><div className={style.Paymment}>
+                type="email"
+                name="email"
+                autoComplete="current-email" />
+
+              <FormControl variant="outlined">
+                <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                <OutlinedInput
+                  id="outlined-adornment-password"
+                  type={showPassword ? 'text' : 'password'}
+                  value={login.password}
+                  onChange={handleChange}
+                  name="password"
+                  endAdornment={<InputAdornment position="end">
+                    <IconButton
+                      aria-label={showPassword ? 'hide the password' : 'display the password'}
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      onMouseUp={handleMouseUpPassword}
+                      edge="end"
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>}
+                  label="Password" />
+              </FormControl>
+            </div><div className={style.Paymment}>
               <p> Este login é apenas para profissionais cadastrados.
                 <br /> Clientes podem agendar diretamente.</p>
             </div><Button variant="contained"
@@ -115,7 +115,7 @@ const Login = () => {
         {!!loading &&
 
           <div className={style.loading}>
-             <h1 className={style.loginMessege}>Verificando credenciais...</h1>
+            <h1 className={style.loginMessege}>Verificando credenciais...</h1>
             <CircularProgress size="4rem" />
           </div>
 
@@ -126,7 +126,7 @@ const Login = () => {
 
           <div className={style.loading}>
             <h1>Erro ao autenticar</h1>
-             <h3>{error}</h3>
+            <h3>{error}</h3>
           </div>
 
         }
