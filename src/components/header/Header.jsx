@@ -10,8 +10,9 @@ import {
 } from "react-router-dom";
 import styles from "./Header.module.css";
 import Servicos from "../serviços/Sericos";
-import TelaMarcar from "../Bookmark/bookmarkPage";
+import BookmarkPage from "../Bookmark/bookmarkPage";
 import Login from "../login/login";
+import ServiceOrder from "../service-order/serviceOrder"
 
 
 const Header = () => {
@@ -55,10 +56,11 @@ const Header = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/agendamentos" element={<ServiceOrder />} />
           <Route path="/horarios" element={<Horarios />} />
           <Route path="/serviços" element={<Servicos />} />
           <Route path="/marcar" element = {<Botao/>}/>
-          <Route path="/marcar/form" element = {<TelaMarcar/>}/>
+          <Route path="/marcar/form" element = {<BookmarkPage/>}/>
         </Routes>
       </Router>
     </div>
