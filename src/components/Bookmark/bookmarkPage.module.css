@@ -115,6 +115,8 @@ input {
   margin-left: 7px;
 }
 
+
+
 @media (max-width: 700px) {
 
   .cardForm {
@@ -148,4 +150,18 @@ input {
     margin-left: 43%;
     margin-top: 15px;
   }
+}
+
+@media (max-height: 700px) {
+
+  .cardForm {
+    width: 360px;
+    height: 750px;
+  }
+
+  .cardContent {
+    width: 360px;
+    height: 150vh;
+  }
+
 }
