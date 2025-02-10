@@ -1,9 +1,11 @@
 import style from "./serviceOrder.module.css"
 import ServiceOrder from "./cards-orders/cardOrder"
 import Footer from "../footer/Footer"
+import React, { useState } from "react";
 const serviceOrderList = () => {
 
-  
+
+  const [loading, setLoading] = useState(false);
 
   return (
     <div className={style.page}>
@@ -25,9 +27,7 @@ const serviceOrderList = () => {
             time="9:00"
           />
     
-      
-
-
+   
       
         </div>
 
