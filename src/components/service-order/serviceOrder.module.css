@@ -11,6 +11,11 @@
 
 }
 
+.notfound {
+    width: 100%;
+    height: 500px;
+}
+
 .list {
     padding: 10px;
     border-radius: 15px;
