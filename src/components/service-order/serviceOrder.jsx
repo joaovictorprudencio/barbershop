@@ -6,7 +6,9 @@ const serviceOrderList = () => {
 
   return (
     <div className={style.page}>
-         <h1> service order is work</h1>
+         <div className={style.content}>
+ 
+         </div>
     </div>
   )
 }

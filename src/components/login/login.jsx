@@ -124,7 +124,7 @@ const Login = () => {
         }
 
 
-        {!!error &&
+        {!!error  &&
 
           <div className={style.loading}>
             <h1>Erro ao autenticar</h1>
