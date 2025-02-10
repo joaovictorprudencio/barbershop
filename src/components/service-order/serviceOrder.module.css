@@ -1,7 +1,11 @@
 .page {
-    background-color: rgb(75, 75, 75);
+    background-color: rgb(245, 10, 10);
 }
 
 .content {
- 
+ background-color: beige;
+ display: flex;
+ justify-content: center;
+ gap: 20px;
+ flex-direction: column;
 }
