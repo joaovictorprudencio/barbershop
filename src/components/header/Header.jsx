@@ -9,7 +9,7 @@ import {
   NavLink,
 } from "react-router-dom";
 import styles from "./Header.module.css";
-import Servicos from "../serviços/Sericos";
+import Servicos from "../serviços/Servicos";
 import BookmarkPage from "../Bookmark/bookmarkPage";
 import Login from "../login/login";
 import ServiceOrder from "../service-order/serviceOrder"
