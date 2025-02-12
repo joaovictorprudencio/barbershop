@@ -9,11 +9,11 @@ const serviceOrderList = () => {
 
   const [loading, setLoading] = useState(false);
 
-  const [status , setstatus] = useState("sucess");
+  const [status , setstatus] = useState("error");
 
-  const [messege, setmessege] = useState("Horarios Marcados")
+  const [messege, setmessege] = useState("")
 
-  const services = ["","",]
+  const services = []
 
   return (
     <div className={style.page}>

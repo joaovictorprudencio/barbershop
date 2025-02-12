@@ -25,7 +25,7 @@ const ListTimesToday = async () => {
         return data
 
     } catch (err) {
-         return err.messege
+         return err.messege;
     }
 
 
