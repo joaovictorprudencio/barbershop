@@ -25,10 +25,17 @@
     height: 300px;
 }
 
+.title {
+    font-family: "Roboto";
+    text-align: center;
+    color: chocolate;
+}
+
 
 .messegeNotfound {
     font-family: "Roboto";
     font-size: 18px;
+    margin-bottom: 50px;
 }
 
 

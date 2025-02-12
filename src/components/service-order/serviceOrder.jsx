@@ -11,7 +11,9 @@ const serviceOrderList = () => {
 
   const [status , setstatus] = useState("sucess");
 
-  const services = [""]
+  const [messege, setmessege] = useState("Horarios Marcados")
+
+  const services = ["","",]
 
   return (
     <div className={style.page}>
@@ -22,7 +24,7 @@ const serviceOrderList = () => {
         `${style.list} ${status === "sucess" ? style.list: ""} ${status ==="error" ? style.listNotFound : ""}`
         }>
 
-        <h2 className={style.title}>Horarios Marcados </h2>
+        <h2 className={style.title}>{messege}</h2>
 
         {services.length === 0 && (
           <div className={style.noServices}>
