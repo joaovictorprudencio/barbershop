@@ -5,10 +5,10 @@ import style from "./cardOrder.module.css"
 const CardOrder = ({name,number,date,time}) => {
   return (
     <div className={style.card}>
-        <h1>{date}</h1>
-        <p>horario:{time}</p>
-        <p>cliente: {name}</p>
-        <p>contato: {number}</p>
+        <h1 className={style.date}>{date}</h1>
+        <p className={style.tome}>horario:{time}</p>
+        <p className={style.name}>cliente: {name}</p>
+        <p className={style.number}>contato: {number}</p>
     </div>
   );
 }

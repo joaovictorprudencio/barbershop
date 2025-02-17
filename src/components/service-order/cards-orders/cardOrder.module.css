@@ -1,5 +1,5 @@
 .card {
-    background-color: rgb(116, 116, 116);
+    background-color: rgb(77, 77, 77);
     font-family: "Roboto";
     padding: 12px;
     display: flex;
@@ -7,4 +7,6 @@
     gap: 10px;
     border-radius: 12px;
     margin: 20px;
+    color: #c7c7c7;
 }
+

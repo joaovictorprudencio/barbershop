@@ -42,11 +42,16 @@ const Login = () => {
 
       localStorage.setItem('authToken', data.token);
 
+
+     if(data.error){
+         setError("erro:" , data.error)
+     }
+
       window.location.href = '/agendamentos';
     } catch (err) {
-      setError('Usuário não autenticado ');
+      setError('Erro: '+ err);
+      window.location.href = '/agendamentos';
       //mock for test  flux login
-        window.location.href = '/agendamentos';
     } finally {
       setLoading(false);
     }

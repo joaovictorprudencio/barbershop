@@ -5,7 +5,7 @@ import ServiceOrder from "./cards-orders/cardOrder"
 import Footer from "../footer/Footer"
 import React, { useState, useEffect } from "react";
 import ListTimesToday from "../../services/list-times-today-service"
-
+import CircularProgress from '@mui/material/CircularProgress';
 const serviceOrderList = () => {
 
 
@@ -24,8 +24,9 @@ const serviceOrderList = () => {
 
         const listTimes = await ListTimesToday();
 
-            
-            const safeListTimes = listTimes || [""]; 
+        
+
+            const safeListTimes = listTimes ? listTimes : []; 
 
             setTimes(safeListTimes);
 
@@ -53,14 +54,14 @@ const serviceOrderList = () => {
 
   if (loading) {
     return (
-      <div>
-        <p>spinner.....</p>
+      <div className={style.loading}>
+        <p>Buscando horários</p>
+         <CircularProgress size="4rem" />
       </div>
     )
   }
 
-
-
+  
   return (
     <div className={style.page}>
 
@@ -90,10 +91,10 @@ const serviceOrderList = () => {
 
                 <ServiceOrder
                   key={index}
-                  name="João"
-                  date="10/02"
-                  number="97323892"
-                  time="9:00" />  </>
+                  name={service.cliente.nome}
+                  date={service.data}
+                  number={service.cliente.telefone}
+                  time={service.horario} />  </>
             ))
           }
         </div>

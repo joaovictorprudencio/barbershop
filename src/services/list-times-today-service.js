@@ -4,9 +4,9 @@
 const ListTimesToday = async () => {
 
     try {
-        const token = localStorage.getItem("token");
+        const token = localStorage.getItem("authToken");
 
-        const response = await fetch(`${import.meta.env.API_URL}/list`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/horarios`, {
 
             method: "GET",
             headers: {
@@ -15,17 +15,19 @@ const ListTimesToday = async () => {
             }
         });
 
-        if(!response.ok) {
+        if (!response.ok) {
             errorData = await response.json();
-            throw new Error(errorData.messege || "Sem conexão ")
+  
         }
 
-        const data = await response.json();
+        const data = await response.json() || [];
+
+
 
         return data
 
     } catch (err) {
-         return err.messege;
+        return [];
     }
 
 

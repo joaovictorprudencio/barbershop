@@ -42,7 +42,7 @@
 .list {
     padding: 10px;
     border-radius: 15px;
-    background-color: rgb(41, 41, 41);
+    background-color: rgb(10, 10, 10);
     max-width: 800px;
 }
 
@@ -50,4 +50,16 @@
 .listNotFound{
     background-color: rgb(255, 255, 255);
     margin-top: 110px;
+}
+
+
+.loading {
+    margin-top: 100px;
+    font-family: "Roboto";
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;  
 }
