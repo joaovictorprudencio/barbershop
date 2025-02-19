@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import { FormControl, InputLabel, OutlinedInput, InputAdornment, IconButton } from "@mui/material";
 import loginBarber from "../../services/auth-service";
 import CircularProgress from '@mui/material/CircularProgress';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
@@ -15,7 +16,7 @@ const Login = () => {
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const [showPassword, setShowPassword] = React.useState(false);
 
-
+  const navigate = useNavigate();
 
 
   const [login, setLogin] = useState({ password: "", email: "" });
@@ -47,7 +48,8 @@ const Login = () => {
          setError("erro:" , data.error)
      }
 
-      window.location.href = '/agendamentos';
+     navigate('/agendamentos');
+
     } catch (err) {
       setError('Erro: '+ err);
      
