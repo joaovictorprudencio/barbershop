@@ -50,7 +50,7 @@ const Login = () => {
       window.location.href = '/agendamentos';
     } catch (err) {
       setError('Erro: '+ err);
-      window.location.href = '/agendamentos';
+     
       //mock for test  flux login
     } finally {
       setLoading(false);

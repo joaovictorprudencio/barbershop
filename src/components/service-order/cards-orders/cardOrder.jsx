@@ -3,6 +3,7 @@
 import style from "./cardOrder.module.css"
 
 const CardOrder = ({name,number,date,time}) => {
+
   return (
     <div className={style.card}>
         <h1 className={style.date}>{date}</h1>

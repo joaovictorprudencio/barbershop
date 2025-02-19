@@ -6,6 +6,7 @@ export const loginBarber = async (email, password) => {
     const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/login`, {
     method:"POST",
     headers: {
+      credentials: "include",
         'Content-Type': 'application/json',  
     },
     body: JSON.stringify({email: email, password: password})
