@@ -20,12 +20,25 @@
     width: 800px;
     padding-bottom: 20px;
     height: auto;
+    max-height: 80vh;
+    overflow-y: auto;
     border-radius: 12px;
     background-color: black;
 }
 
+.empty {
+  width: 400px;
+}
+
+.messegeNotFound {
+  font-family: "Roboto" ;
+  text-align: center;
+    color: rgb(194, 78, 36);
+    font-weight: 400;
+}
+
 @media (max-width: 700px){
   .card{
-    width:370px ;
+    width:390px ;
   }
 }

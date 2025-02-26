@@ -1,17 +1,22 @@
 import styles from "./item.module.css";
 import disponibilidade from "../../img/ok.png";
+import dayjs from "dayjs";
 const Item = ({ Horario }) => {
-  if (!Horario) {
-    return <h1>carregando....</h1>;
-  }
+
+
+  const { cliente, data, horario, status } = Horario;
+  const { nome, telefone } = cliente || {}; 
+
+  const formtParans = dayjs(`${data} ${horario}`).format("HH:mm")
+
   return (
     <div className={styles.item}>
       <div className={styles.texto}>
         <h2 className={styles.data}>
-          {Horario.horaInicial} - {Horario.horaFormatada}
+          {formtParans} 
         </h2>
-        <p className={styles.dado}> nome: {Horario.nome}</p>
-        <p className={styles.dado}>contato: {Horario.contato}</p>
+        <p className={styles.nome}> nome:{nome}</p>
+        <p className={styles.contato}>Barbeiro: {telefone}</p>
       </div>
        <div className={styles.icone}>
         <p className={styles.status}>Disponivel</p>

@@ -18,6 +18,14 @@ import TextField from "@mui/material/TextField";
 import Button from '@mui/material/Button';
 import WhatsAppIcon from "./img/whatsapp.png";
 import pixcopy from "./img/document copi.png";
+import createTime from "../../services/create-time";
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
 
 
 const BookmarkPage = () => {
@@ -28,9 +36,11 @@ const BookmarkPage = () => {
 
   const [numberPhone, setnumberPhone] = useState("");
 
-  const [name, setName] = useState("")
+  const [name, setName] = useState("");
 
   const [time, setTime] = useState("");
+
+  const [date , setDate] = useState("");
 
   const selectTime = (event) => {
     const seletedTime = event.target.value;
@@ -38,10 +48,28 @@ const BookmarkPage = () => {
     console.log(` horario: ${event.target.value} data ${value}`)
   };
 
+
+  useEffect(()=>{
+    const create = async () => {
+
+      const data =  await createTime(name,numberPhone,date,time)
+
+      if(data.messege === "Horario não disponivel") {
+
+      }
+
+      
+
+
+    
+    }
+  },[]);
+
+
  
     const number = '5585997330821';
     const messege = "envie o comprovante pix!";
-    const encodeMessege = encodeURIComponent(messege)
+    const encodeMessege = encodeURIComponent(messege);
     const whatsappLink = `https://wa.me/${number}?text=${encodeMessege}`
   
 
@@ -59,14 +87,14 @@ const BookmarkPage = () => {
   };
 
   const stateObject = () => {
-    alert(`nome: ${name} nome: ${numberPhone} nome: ${time} nome: ${value}`)
+    console.log(`nome: ${name} telefone: ${numberPhone} horario: ${time} data: ${date}`)
   }
 
   const confirm = () => {
    alert("chave pix copiada")
   }
 
-  const text = "texto copiado"
+  const text = "texto copiado";
 
   const handleCopy = () => {
     if (navigator.clipboard && window.isSecureContext) {
@@ -103,7 +131,11 @@ const BookmarkPage = () => {
                   label="Data do corte"
                   format="DD-MM-YYYY"
                   value={value}
-                  onChange={(newValue) => setValue(newValue)}
+                  onChange={(newValue) => {
+                    const formatDate = dayjs(newValue).format("YYYY-MM-DD")
+                    setValue(newValue)
+                    setDate(formatDate)
+                  }}
                   minDate={dayjs()}
                 />
               </DemoContainer>
@@ -187,7 +219,11 @@ const BookmarkPage = () => {
           </div>
 
 
-          <Button variant="contained" sx={{ marginTop: 5, backgroundColor: 'rgb(228, 110, 15);', width: 130, height: 40 }} >
+          <Button
+           variant="contained"
+            sx={{ marginTop: 5, backgroundColor: 'rgb(228, 110, 15);', width: 130, height: 40 }}
+            onClick={marchTime}
+           >
             agendar
           </Button>
         </div>
