@@ -15,22 +15,19 @@ import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import NativeSelect from "@mui/material/NativeSelect";
 import TextField from "@mui/material/TextField";
-import Button from '@mui/material/Button';
 import WhatsAppIcon from "./img/whatsapp.png";
 import pixcopy from "./img/document copi.png";
-import createTime from "../../services/create-time";
+import { useCreateTime } from "../../services/create-time";
 import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import Slide from '@mui/material/Slide';
-
+import MaterialModal from "../modal/modal";
+import { CircularProgress } from "@mui/material";
 
 const BookmarkPage = () => {
 
   const pixKey = import.meta.env.VITE_KEY;
+  const [openModal, setOpenModal] = useState(false)
+
+  const { mutateAsync: createTime, isPending: loadingCreateTime } = useCreateTime()
 
   const [value, setValue] = useState(dayjs());
 
@@ -49,21 +46,14 @@ const BookmarkPage = () => {
   };
 
 
-  useEffect(()=>{
     const create = async () => {
 
-      const data =  await createTime(name,numberPhone,date,time)
+      const data =  await createTime(name,numberPhone,date,time).then((res) => {
+        setOpenModal(true)
+      }).catch((e) => setOpenModal(true))
 
-      if(data.messege === "Horario não disponivel") {
-
-      }
-
-      
-
-
-    
+      console.log('data', data)
     }
-  },[]);
 
 
  
@@ -118,6 +108,10 @@ const BookmarkPage = () => {
 
   return (
     <div className={styles.componentTela}>
+      <MaterialModal 
+        open={openModal}
+        onClose={() => setOpenModal(false)}
+      />
       <section className={styles.cardContent}>
         <div className={styles.cardForm}>
           <div className={styles.titulo}>
@@ -222,9 +216,9 @@ const BookmarkPage = () => {
           <Button
            variant="contained"
             sx={{ marginTop: 5, backgroundColor: 'rgb(228, 110, 15);', width: 130, height: 40 }}
-            onClick={marchTime}
+            onClick={create}
            >
-            agendar
+            { loadingCreateTime ? <CircularProgress /> : 'Agendar' }
           </Button>
         </div>
       </section>
