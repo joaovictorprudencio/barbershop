@@ -1,25 +1,31 @@
 import { useMutation } from "@tanstack/react-query"
 import axios from "axios"
 
-const createTime = async  (name,numberPhone,date,time)  => {
-    const dataTime = { 
-        horario: time,
-        data: date,
-        nome: name,
-        teletone: numberPhone,
-        barbeiroNome: "Maikon"
-      
-    }
+const createTime = async  ({name,numberPhone,date,time})  => {
+    console.log("Parâmetros recebidos:", { name, numberPhone, date, time }); 
+    try {
+        
 
-    const dataError = {
-        messege: "Horario não disponivel"
-    }
+        const dataTime = {
+            horario: time,
+            data: date,
+            nome: name,
+            telefone: numberPhone,
+            BarbeiroNome:"Maikon"
+        };
 
-    axios.post(`${import.meta.env.VITE_API_URL}/auth/march`,dataTime)
-    .then(response => {
-        return response.data
-    })
-    .catch(() => dataError )
+        console.log("dados na função:",name,numberPhone, date,time)
+
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/march`, dataTime,  {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+        return response.data; 
+    } catch (error) {
+        console.error("Erro ao marcar horário:", error);
+        throw error; 
+    }
 
 }
 

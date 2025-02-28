@@ -17,8 +17,11 @@ const style = {
   p: 4,
 };
 
-export default function MaterialModal({open, onClose}) {
+export default function MaterialModal({open, onClose, messageMain, message}) {
   const handleOpen = () => setOpen(true);
+
+ 
+  
 
 
   return (
@@ -32,10 +35,10 @@ export default function MaterialModal({open, onClose}) {
       >
         <Box sx={style}>
           <Typography id="keep-mounted-modal-title" variant="h6" component="h2">
-            Text in a modal
+           {messageMain}
           </Typography>
           <Typography id="keep-mounted-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+           {message}
           </Typography>
         </Box>
       </Modal>

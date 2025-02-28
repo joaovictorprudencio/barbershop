@@ -37,27 +37,42 @@ const BookmarkPage = () => {
 
   const [time, setTime] = useState("");
 
-  const [date , setDate] = useState("");
+  const [date , setDate] = useState(dayjs().format("YYYY-MM-DD"));
+
+ const [title , setTitle] = useState("");
+
+  const [ message , setMessage] = useState("");
 
   const selectTime = (event) => {
     const seletedTime = event.target.value;
     setTime(seletedTime);
-    console.log(` horario: ${event.target.value} data ${value}`)
   };
 
 
     const create = async () => {
+     
 
-      const data =  await createTime(name,numberPhone,date,time).then((res) => {
-        setOpenModal(true)
-      }).catch((e) => setOpenModal(true))
-
-      console.log('data', data)
-    }
+      try {
+          const data = await createTime({name, numberPhone, date, time});
+  
+          setOpenModal(true);
+          setTitle("Horário marcado");
+          setMessage(`Seu horário foi marcado para as ${dayjs(time, "HH:mm").format("HH:mm")} no dia ${dayjs(date).format("DD/MM")} com sucesso ${name} !`);
+  
+          console.log("Data recebida da API:", data);
+      } catch (error) {
+          setOpenModal(true);
+          setTitle("Horário está indisponível");
+          setMessage("Infelizmente não temos esse horário disponível para essa data");
+  
+          console.error("Erro ao marcar horário:", error);
+      }
+}
+    
 
 
  
-    const number = '5585997330821';
+    const number = '5585998160243';
     const messege = "envie o comprovante pix!";
     const encodeMessege = encodeURIComponent(messege);
     const whatsappLink = `https://wa.me/${number}?text=${encodeMessege}`
@@ -80,11 +95,8 @@ const BookmarkPage = () => {
     console.log(`nome: ${name} telefone: ${numberPhone} horario: ${time} data: ${date}`)
   }
 
-  const confirm = () => {
-   alert("chave pix copiada")
-  }
 
-  const text = "texto copiado";
+ 
 
   const handleCopy = () => {
     if (navigator.clipboard && window.isSecureContext) {
@@ -110,6 +122,8 @@ const BookmarkPage = () => {
     <div className={styles.componentTela}>
       <MaterialModal 
         open={openModal}
+        messageMain={title}
+        message={message}
         onClose={() => setOpenModal(false)}
       />
       <section className={styles.cardContent}>
@@ -123,10 +137,11 @@ const BookmarkPage = () => {
               <DemoContainer components={["DatePicker"]}>
                 <DatePicker
                   label="Data do corte"
-                  format="DD-MM-YYYY"
+                  format="YYYY-MM-DD"
                   value={value}
-                  onChange={(newValue) => {
+                  onChange={(newValue) => { 
                     const formatDate = dayjs(newValue).format("YYYY-MM-DD")
+                    console.log("Formatado:", formatDate);
                     setValue(newValue)
                     setDate(formatDate)
                   }}
@@ -153,15 +168,27 @@ const BookmarkPage = () => {
                   id: "uncontrolled-native",
                 }}
               >
-                <option value={"8:30"}>8:30</option>
-                <option value={"9:00"}>9:00</option>
-                <option value={"10:00"}>10:00</option>
-                <option value={"10:30"}>10:30</option>
-                <option value={"11:00"}>11:00</option>
-                <option value={"11:30"}>11:30</option>
-                <option value={"14:00"}>14:00</option>
-                <option value={"14:30"}>14:30</option>
-                <option value={"15:00"}>15:00</option>
+                <option value={"00:00:00"}>Escolher</option>
+                <option value={"09:00:00"}>9:00</option>
+                <option value={"09:30:00"}>9:30</option>
+                <option value={"10:00:00"}>10:00</option>
+                <option value={"10:30:00"}>10:30</option>
+                <option value={"11:00:00"}>11:00</option>
+                <option value={"11:30:00"}>11:30</option>
+                <option value={"12:00:00"}>12:00</option>
+                <option value={"14:00:00"}>14:00</option>
+                <option value={"14:30:00"}>14:30</option>
+                <option value={"15:00:00"}>15:00</option>
+                <option value={"15:30:00"}>15:30</option>
+                <option value={"16:00:00"}>16:00</option>
+                <option value={"16:30:00"}>16:30</option>
+                <option value={"17:00:00"}>17:00</option>
+                <option value={"17:30:00"}>17:30</option>
+                <option value={"18:00:00"}>18:00</option>
+                <option value={"18:30:00"}>18:30</option>
+                <option value={"19:00:00"}>19:00</option>
+                <option value={"19:30:00"}>19:30</option>
+                <option value={"20:00:00"}>20:00</option>
               </NativeSelect>
             </FormControl>
           </Box>
