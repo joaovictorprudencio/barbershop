@@ -80,7 +80,6 @@ const serviceOrderList = () => {
                 alt="Nenhum horário disponível"
                 className={style.notfound}
               />
-              <p className={style.messegeNotfound}>Sem horários disponíveis para hoje.</p>
             </div>
           )}
 
