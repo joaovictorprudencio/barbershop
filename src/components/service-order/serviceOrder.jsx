@@ -90,10 +90,12 @@ const serviceOrderList = () => {
 
                 <ServiceOrder
                   key={index}
-                  name={service.cliente.nome}
-                  date={service.data}
-                  number={service.cliente.telefone}
-                  time={service.horario} />  </>
+                  name={service.cliente.nome || ""}
+                  date={service.data || ""}
+                  number={service.cliente.telefone || ""}
+                  time={service.horario || ""} 
+                  /> 
+              </>
             ))
           }
         </div>
