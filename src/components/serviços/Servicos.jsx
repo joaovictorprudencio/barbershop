@@ -19,6 +19,14 @@ const Servicos = () => {
       />
 
       <CardService
+      titulo="Corte Social"
+      imagem={tesoura}
+       preco={`$${(23).toFixed(2)}`}
+       texto="O corte na tesoura tem uma melhor remodelação, proporcionando um acabamento natural e detalhado."
+       />
+      
+
+      <CardService
         titulo="Degrade  maquina"
         imagem={degradeNavalhado}
         preco={`$${(28).toFixed(2)}`}
