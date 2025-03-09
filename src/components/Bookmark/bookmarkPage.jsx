@@ -20,55 +20,69 @@ import pixcopy from "./img/document copi.png";
 import { useCreateTime } from "../../services/create-time";
 import Button from '@mui/material/Button';
 import MaterialModal from "../modal/modal";
-import { CircularProgress } from "@mui/material";
+import { CircularProgress, Typography } from "@mui/material";
+import { useFormik } from "formik";
+import * as Yup from 'yup';
 
 const BookmarkPage = () => {
 
+  const TimeValidation = Yup.object().shape({
+    name: Yup.string().required('O nome é obrigatório'),
+    time: Yup.string().required('Horário é obrigatorio'),
+    numberPhone: Yup.string().required('Numero de celular é obrigatorio'),
+  })
+
   const pixKey = import.meta.env.VITE_KEY;
   const [openModal, setOpenModal] = useState(false)
-
+  
   const { mutateAsync: createTime, isPending: loadingCreateTime } = useCreateTime()
-
+  
   const [value, setValue] = useState(dayjs());
-
-  const [numberPhone, setnumberPhone] = useState("");
-
-  const [name, setName] = useState("");
-
-  const [time, setTime] = useState("");
-
-  const [date , setDate] = useState(dayjs().format("YYYY-MM-DD"));
-
- const [title , setTitle] = useState("");
-
-  const [ message , setMessage] = useState("");
-
-  const selectTime = (event) => {
-    const seletedTime = event.target.value;
-    setTime(seletedTime);
-  };
-
-
-    const create = async () => {
-     
-
-      try {
-          const data = await createTime({name, numberPhone, date, time});
-  
-          setOpenModal(true);
-          setTitle("Horário marcado");
-          setMessage(`Seu horário foi marcado para as ${dayjs(time, "HH:mm").format("HH:mm")} no dia ${dayjs(date).format("DD/MM")} com sucesso ${name} !`);
-  
-          console.log("Data recebida da API:", data);
-      } catch (error) {
-          setOpenModal(true);
-          setTitle("Horário está indisponível");
-          setMessage("Infelizmente não temos esse horário disponível para essa data");
-  
-          console.error("Erro ao marcar horário:", error);
-      }
-}
     
+  const [date , setDate] = useState(dayjs().format("YYYY-MM-DD"));
+  
+  const [title , setTitle] = useState("");
+  
+  const [ message , setMessage] = useState("");
+  
+  
+  const create = async ({name, numberPhone, date, time}) => {
+    
+    
+    try {
+      console.log(`data no compoenete: ${date}`)
+      const data = await createTime({name, numberPhone, date, time});
+      
+      setOpenModal(true);
+      setTitle("Horário marcado");
+      setMessage(`Seu horário foi marcado para as ${dayjs(time, "HH:mm").format("HH:mm")} no dia ${dayjs(date).format("DD/MM")} com sucesso ${name} !`);
+      
+      console.log("Data recebida da API:", data);
+    } catch (error) {
+      setOpenModal(true);
+      setTitle("Horário está indisponível");
+      setMessage("Infelizmente não temos esse horário disponível para essa data");
+      
+      console.error("Erro ao marcar horário:", error);
+    }
+  }
+  
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      time: '',
+      numberPhone: '',
+      date: dayjs().format("YYYY-MM-DD")
+    },
+    validationSchema: TimeValidation,
+    onSubmit: async (values) => {
+      try {
+        await create({...values})
+      } catch (e) {
+        console.error(e)
+      }
+    }
+  })
 
 
  
@@ -80,19 +94,6 @@ const BookmarkPage = () => {
 
   const handleRedirec = () => {
     window.location.href = whatsappLink;
-  }
-
-
-  const handleNameBlur = (event) => {
-    setName(event.target.value);
-  };
-
-  const handleNumberBlur = (event) => {
-    setnumberPhone(event.target.value);
-  };
-
-  const stateObject = () => {
-    console.log(`nome: ${name} telefone: ${numberPhone} horario: ${time} data: ${date}`)
   }
 
 
@@ -142,8 +143,10 @@ const BookmarkPage = () => {
                   onChange={(newValue) => { 
                     const formatDate = dayjs(newValue).format("YYYY-MM-DD")
                     console.log("Formatado:", formatDate);
+                    formik.setFieldValue("date", formatDate);
                     setValue(newValue)
                     setDate(formatDate)
+                    console.log("date no input  : " ,date)
                   }}
                   minDate={dayjs()}
                 />
@@ -156,16 +159,21 @@ const BookmarkPage = () => {
               <InputLabel
                 variant="standard"
                 htmlFor="uncontrolled-native"
-                shrink={time === "" || time !== ""}
+                shrink={formik.values.time === "" || formik.values.time !== ""}
               >
                 Horario
               </InputLabel>
               <NativeSelect
-                value={time}
-                onChange={selectTime}
+                name="time"
+                value={formik.values.time}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                error={formik.touched.time && Boolean(formik.errors.time)}
                 inputProps={{
-                  name: "horario",
                   id: "uncontrolled-native",
+                }}
+                style={{
+                  color: (formik.touched.time && Boolean(formik.errors.time)) ? '#E53935' : '#000'
                 }}
               >
                 <option value={"00:00:00"}>Escolher</option>
@@ -191,6 +199,11 @@ const BookmarkPage = () => {
                 <option value={"20:00:00"}>20:00</option>
               </NativeSelect>
             </FormControl>
+            {
+              (formik.touched.time && Boolean(formik.errors.time)) && (
+                <Typography fontSize={12} color="error">{formik.errors.time}</Typography>
+              )
+            }
           </Box>
 
           <Box
@@ -202,9 +215,15 @@ const BookmarkPage = () => {
             <TextField
               id="standard-basic"
               label="Nome"
+              name={'name'}
               variant="standard"
-              onChange={handleNameBlur}
-              value={name}  
+              onChange={formik.handleChange}
+              value={formik.values.name}  
+              error={formik.touched.name && Boolean(formik.errors.name)}
+              onBlur={formik.handleBlur}
+              helperText={
+                formik.touched.name && formik.errors.name
+              }
             />
 
           </Box>
@@ -218,8 +237,14 @@ const BookmarkPage = () => {
             <TextField id="standard-basic"
               label="Numero de contato"
               variant="standard"
-              onChange={handleNumberBlur}
-              value={numberPhone}
+              name={'numberPhone'}
+              onChange={formik.handleChange}
+              value={formik.values.numberPhone}
+              error={formik.touched.numberPhone && Boolean(formik.errors.numberPhone)}
+              onBlur={formik.handleBlur}
+              helperText={
+                formik.touched.numberPhone && formik.errors.numberPhone
+              }
             />
           </Box>
 
@@ -242,8 +267,8 @@ const BookmarkPage = () => {
 
           <Button
            variant="contained"
-            sx={{ marginTop: 5, backgroundColor: 'rgb(228, 110, 15);', width: 130, height: 40 }}
-            onClick={create}
+            sx={{ marginTop: 2, backgroundColor: 'rgb(228, 110, 15);', width: 130, height: 40 }}
+            onClick={formik.handleSubmit}
            >
             { loadingCreateTime ? <CircularProgress /> : 'Agendar' }
           </Button>

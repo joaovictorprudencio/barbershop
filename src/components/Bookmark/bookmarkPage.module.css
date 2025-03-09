@@ -10,6 +10,7 @@
 .cardForm {
   margin-top: 30px;
   padding-top: 50px;
+  padding-bottom: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -156,12 +157,13 @@ input {
 
   .cardForm {
     width: 360px;
-    height: 750px;
+    height: 776px;
+    padding-bottom: 82px;
   }
 
   .cardContent {
     width: 360px;
-    height: 150vh;
+    height: 190vh;
   }
 
 }
