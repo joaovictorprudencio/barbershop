@@ -11,12 +11,13 @@ const Horarios = () => {
         <div className={styles.precos}>
           <Preco />
         </div>
-      </div>
-      <Marcar />
-      <CardDisponiveis />
+      </div> 
       <div className={styles.cardContente}>
         <CardMarcar/>
       </div>
+      <Marcar />
+      <CardDisponiveis />
+     
       
       <Footer />
     </div>
