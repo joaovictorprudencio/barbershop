@@ -1,38 +1,33 @@
 /* eslint-disable no-undef */
 
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
-const ListTimesToday = async () => {
-
+const listTimesToday = async () => {
     try {
-        const token = localStorage.getItem("authToken");
+        const token = localStorage.getItem("authToken") || ""; // Garante que não será null
 
-        console.log("token: " , token)
+        console.log("Token:", token);
 
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/horarios`, {
-
-            method: "GET",
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/horarios`, {
             headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
             }
         });
 
-        if (!response.ok) {
-            errorData = await response.json();
-  
-        }
-
-        const data = await response.json() || [];
-
-
-
-        return data
-
+        return response.data;
     } catch (err) {
+        console.error("Erro ao buscar horários:", err);
         return [];
     }
+};
 
-
-}
-
-export default ListTimesToday
+export const useListTimesToday = () => {
+    return useQuery({
+        queryKey: ["listTimesToday"],
+        queryFn: listTimesToday,
+        staleTime: 1000 * 60 * 5,
+        retry: 1
+    });
+};

@@ -4,55 +4,26 @@ import style from "./serviceOrder.module.css"
 import ServiceOrder from "./cards-orders/cardOrder"
 import Footer from "../footer/Footer"
 import React, { useState, useEffect } from "react";
-import ListTimesToday from "../../services/list-times-today-service"
 import CircularProgress from '@mui/material/CircularProgress';
+import {DeleteOrderDialog} from "./components/DeleteOrderDialog.jsx";
+import {useListTimesToday} from "../../services/list-times-today-service.js";
 const serviceOrderList = () => {
-
-
+    const { data: times = [], isLoading } = useListTimesToday()
   const [loading, setLoading] = useState(true);
 
   const [status, setstatus] = useState("error");
 
   const [messege, setmessege] = useState("");
 
-  const [times, setTimes] = useState([])
+
+  const [openModal, setOpenModal] = useState({
+      open: false,
+      orderId: null
+  });
 
 
-  useEffect(() => {
-    const GetListTimes = async () => {
-      try {
 
-        const listTimes = await ListTimesToday();
-
-        
-
-            const safeListTimes = listTimes ? listTimes : []; 
-
-            setTimes(safeListTimes);
-
-            if (safeListTimes.length === 0) { 
-                setstatus("error");
-                setmessege("Não há horários para hoje");
-            } else {
-                setstatus("success");
-                setmessege("Horários para hoje");
-            }
-
-
-      } catch (err) {
-        setmessege(err || "handling error")
-      }
-
-      setLoading(false)
-
-    };
-
-    GetListTimes();
-
-  }, []);
-
-
-  if (loading) {
+  if (isLoading) {
     return (
       <div className={style.loading}>
         <p>Buscando horários</p>
@@ -61,9 +32,27 @@ const serviceOrderList = () => {
     )
   }
 
-  
+  const handleOpenModal = (id) => {
+      setOpenModal({
+          open: true,
+          orderId: id,
+      });
+  }
+
+  const handleCloseModal = () => {
+      setOpenModal({
+          open: false,
+      });
+  }
+
   return (
     <div className={style.page}>
+
+        <DeleteOrderDialog
+            open={openModal.open}
+            onClose={handleCloseModal}
+            orderId={openModal.orderId}
+        />
 
       <section className={style.content}>
 
@@ -71,7 +60,9 @@ const serviceOrderList = () => {
           `${style.list} ${status === "sucess" ? style.list : ""} ${status === "error" ? style.listNotFound : ""}`
         }>
 
-          <h2 className={style.title}>{messege}</h2>
+            {
+                times.length <= 0 && (<h2 className={style.title}>{'Não há horários no momento'}</h2>)
+            }
 
           {times.length === 0 && (
             <div className={style.noServices}>
@@ -82,18 +73,16 @@ const serviceOrderList = () => {
               />
             </div>
           )}
-
-
           {times.length > 0 &&
             times.map((service, index) => (
               <>
-
                 <ServiceOrder
                   key={index}
                   name={service.cliente.nome || ""}
                   date={service.data || ""}
                   number={service.cliente.telefone || ""}
-                  time={service.horario || ""} 
+                  time={service.horario || ""}
+                  onClick={() => handleOpenModal(service.id)}
                   /> 
               </>
             ))
