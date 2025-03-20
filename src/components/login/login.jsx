@@ -9,6 +9,9 @@ import { FormControl, InputLabel, OutlinedInput, InputAdornment, IconButton } fr
 import loginBarber from "../../services/auth-service";
 import CircularProgress from '@mui/material/CircularProgress';
 import { useNavigate } from 'react-router-dom';
+import {useFormik} from "formik";
+import * as Yup from "yup";
+import Typography from "@mui/material/Typography";
 
 const Login = () => {
 
@@ -31,8 +34,7 @@ const Login = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (login) => {
 
     setLoading(true);
     setError('');
@@ -43,10 +45,6 @@ const Login = () => {
 
       localStorage.setItem('authToken', data.token);
 
-
-     if(data.error){
-         setError("erro:" , data.error)
-     }
 
      navigate('/agendamentos');
 
@@ -67,6 +65,18 @@ const Login = () => {
     event.preventDefault();
   };
 
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: ""
+    },
+    validationSchema: Yup.object().shape({
+      email: Yup.string().required('Email é obrigatório!'),
+      password: Yup.string().required('Senha é obrigatória!')
+    }),
+    onSubmit: (values) => handleSubmit(values)
+  })
+
 
   return (
     <div className={style.page}>
@@ -80,11 +90,17 @@ const Login = () => {
             <h1 className={style.title}>Entrar</h1>
 
             <div className={style.sectionLogin}>
-              <TextField s
+              <TextField
                 id="outlined-email-input"
                 label="Email"
-                value={login.email}
-                onChange={handleChange}
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                error={Boolean(formik.errors.email)}
+                helperText={
+                  (formik.touched.email && Boolean(formik.errors.email)) ?
+                      formik.errors.email : ''
+              }
                 type="email"
                 name="email"
                 autoComplete="current-email" />
@@ -94,8 +110,10 @@ const Login = () => {
                 <OutlinedInput
                   id="outlined-adornment-password"
                   type={showPassword ? 'text' : 'password'}
-                  value={login.password}
-                  onChange={handleChange}
+                  value={formik.values.password}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  error={Boolean(formik.errors.password)}
                   name="password"
                   endAdornment={<InputAdornment position="end">
                     <IconButton
@@ -109,13 +127,18 @@ const Login = () => {
                     </IconButton>
                   </InputAdornment>}
                   label="Password" />
+                {
+                  (formik.touched.password && Boolean(formik.errors.password)) && (
+                      <Typography color={'error'} ml={2} fontSize={12}>{formik.errors.password}</Typography>
+                    )
+                }
               </FormControl>
             </div><div className={style.Paymment}>
               <p> Este login é apenas para profissionais cadastrados.
                 <br /> Clientes podem agendar diretamente.</p>
             </div><Button variant="contained"
               sx={{ marginTop: 5, backgroundColor: 'rgb(228, 110, 15);', width: 130, height: 40 }}
-              onClick={handleSubmit}
+              onClick={formik.handleSubmit}
             >
               <p>Entrar</p>
             </Button></>
