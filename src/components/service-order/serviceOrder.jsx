@@ -22,6 +22,22 @@ const serviceOrderList = () => {
   });
 
 
+  useEffect(() => {
+    const statePage =  () => {
+
+
+      if (times.length === 0) {
+        setstatus("sucess");
+        console.log("chamou")
+      }
+      
+    };
+    if (isLoading) {
+      statePage();
+    }
+  }, [times, isLoading]);
+
+  
 
   if (isLoading) {
     return (
