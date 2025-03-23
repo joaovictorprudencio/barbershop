@@ -30,6 +30,8 @@ const serviceOrderList = () => {
         setstatus("sucess");
         console.log("chamou")
       }
+
+      setstatus("error");
       
     };
     if (isLoading) {
