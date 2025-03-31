@@ -28,7 +28,7 @@ const serviceOrderList = () => {
 
       if (times.length === 0) {
         setstatus("sucess");
-        console.log("chamou")
+       
       }
 
       setstatus("error");
