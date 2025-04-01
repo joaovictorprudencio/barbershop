@@ -68,7 +68,7 @@ const Servicos = () => {
         titulo="barba"
         imagem={barba}
         preco={`$${(15).toFixed(2)}`}
-        texto=' Aparo, remodelação e remoção completa da barba com navalha, proporcionando melhor acabamento.'
+        texto=' Remoção completa da barba com navalha, garantindo um barbear rente e confortável.'
       />
       <CardService
         titulo="barba desenhada"
