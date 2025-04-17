@@ -11,7 +11,7 @@ const serviceOrderList = () => {
     const { data: times = [], isLoading } = useListTimesToday()
   const [loading, setLoading] = useState(true);
 
-  const [status, setstatus] = useState("error");
+  const [status, setstatus] = useState("success");
 
   const [messege, setmessege] = useState("");
 
@@ -23,21 +23,17 @@ const serviceOrderList = () => {
 
 
   useEffect(() => {
-    const statePage =  () => {
-
+  
 
       if (times.length === 0) {
-        setstatus("sucess");
+       setstatus("error");
        
+      } else {
+        setstatus("success");
       }
 
-      setstatus("error");
-      
-    };
-    if (isLoading) {
-      statePage();
-    }
-  }, [times, isLoading]);
+
+  }, [times]);
 
   
 
@@ -49,6 +45,8 @@ const serviceOrderList = () => {
       </div>
     )
   }
+
+
 
   const handleOpenModal = (id) => {
       setOpenModal({
@@ -75,7 +73,7 @@ const serviceOrderList = () => {
       <section className={style.content}>
 
         <div className={
-          `${style.list} ${status === "sucess" ? style.list : ""} ${status === "error" ? style.listNotFound : ""}`
+          `${style.list} ${status === "success" ? style.list : ""} ${status === "error" ? style.listNotFound : ""}`
         }>
 
             {

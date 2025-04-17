@@ -133,7 +133,8 @@ const Login = () => {
                     )
                 }
               </FormControl>
-            </div><div className={style.Paymment}>
+            </div>
+            <div className={style.Paymment}>
               <p> Este login é apenas para profissionais cadastrados.
                 <br /> Clientes podem agendar diretamente.</p>
             </div><Button variant="contained"
