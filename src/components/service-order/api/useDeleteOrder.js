@@ -3,14 +3,10 @@ import {useMutation, useQueryClient} from "@tanstack/react-query";
 
 const deleteOrder = async (id) => {
     try {
-        const token = localStorage.getItem("authToken");
+     
 
-        const response = await axios.put(`${import.meta.env.VITE_API_URL}/desmarcar/${id}`, {
+        const response = await axios.put(`${import.meta.env.VITE_API_URL}/times/uncheck/${id}`, {
 
-        }, {
-            headers: {
-                'Authorization': `Bearer ${token}`,
-            }
         });
         return response.data;
     } catch (error) {

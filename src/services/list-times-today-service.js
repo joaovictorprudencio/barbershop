@@ -5,14 +5,11 @@ import { useQuery } from "@tanstack/react-query";
 
 const listTimesToday = async () => {
     try {
-        const token = localStorage.getItem("authToken") || ""; // Garante que não será null
+     
 
-        console.log("Token:", token);
-
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/horarios`, {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/times/unavailable`, {
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`
             }
         });
 

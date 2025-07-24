@@ -3,7 +3,7 @@ export const loginBarber = async (email, password) => {
 
   try {
 
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/login`, {
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/barbers/login`, {
     method:"POST",
     headers: {
       credentials: "include",

@@ -5,11 +5,13 @@ import axios from "axios"
 
 const listTimesAvailable = async () => {
 
-  return await axios.get(`${import.meta.env.VITE_API_URL}/disponiveis`)
+  return await axios.get(`${import.meta.env.VITE_API_URL}/times/available`)
     .then(response => response.data)
     .catch(() => [])
 
 }
+
+
 
 
 
