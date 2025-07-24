@@ -176,27 +176,27 @@ const BookmarkPage = () => {
                   color: (formik.touched.time && Boolean(formik.errors.time)) ? '#E53935' : '#000'
                 }}
               >
-                <option value={"00:00:00"}>Escolher</option>
-                <option value={"09:00:00"}>9:00</option>
-                <option value={"09:30:00"}>9:30</option>
-                <option value={"10:00:00"}>10:00</option>
-                <option value={"10:30:00"}>10:30</option>
-                <option value={"11:00:00"}>11:00</option>
-                <option value={"11:30:00"}>11:30</option>
-                <option value={"12:00:00"}>12:00</option>
-                <option value={"14:00:00"}>14:00</option>
-                <option value={"14:30:00"}>14:30</option>
-                <option value={"15:00:00"}>15:00</option>
-                <option value={"15:30:00"}>15:30</option>
-                <option value={"16:00:00"}>16:00</option>
-                <option value={"16:30:00"}>16:30</option>
-                <option value={"17:00:00"}>17:00</option>
-                <option value={"17:30:00"}>17:30</option>
-                <option value={"18:00:00"}>18:00</option>
-                <option value={"18:30:00"}>18:30</option>
-                <option value={"19:00:00"}>19:00</option>
-                <option value={"19:30:00"}>19:30</option>
-                <option value={"20:00:00"}>20:00</option>
+                <option value={"00:00"}>Escolher</option>
+                <option value={"09:00"}>9:00</option>
+                <option value={"09:30"}>9:30</option>
+                <option value={"10:00"}>10:00</option>
+                <option value={"10:30"}>10:30</option>
+                <option value={"11:00"}>11:00</option>
+                <option value={"11:30"}>11:30</option>
+                <option value={"12:00"}>12:00</option>
+                <option value={"14:00"}>14:00</option>
+                <option value={"14:30"}>14:30</option>
+                <option value={"15:00"}>15:00</option>
+                <option value={"15:30"}>15:30</option>
+                <option value={"16:00"}>16:00</option>
+                <option value={"16:30"}>16:30</option>
+                <option value={"17:00"}>17:00</option>
+                <option value={"17:30"}>17:30</option>
+                <option value={"18:00"}>18:00</option>
+                <option value={"18:30"}>18:30</option>
+                <option value={"19:00"}>19:00</option>
+                <option value={"19:30"}>19:30</option>
+                <option value={"20:00"}>20:00</option>
               </NativeSelect>
             </FormControl>
             {

@@ -8,6 +8,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import {DeleteOrderDialog} from "./components/DeleteOrderDialog.jsx";
 import {useListTimesToday} from "../../services/list-times-today-service.js";
 const serviceOrderList = () => {
+  
     const { data: times = [], isLoading } = useListTimesToday()
   const [loading, setLoading] = useState(true);
 
@@ -23,6 +24,9 @@ const serviceOrderList = () => {
 
 
   useEffect(() => {
+
+    console.log("times aqui",times)
+    console.log("times aqui",times.date)
   
 
       if (times.length === 0) {
@@ -90,15 +94,15 @@ const serviceOrderList = () => {
             </div>
           )}
           {times.length > 0 &&
-            times.map((service, index) => (
+            times.map((service, index) => ( 
               <>
                 <ServiceOrder
                   key={index}
-                  name={service.cliente.nome || ""}
-                  date={service.data || ""}
-                  number={service.cliente.telefone || ""}
-                  time={service.horario || ""}
-                  onClick={() => handleOpenModal(service.id)}
+                  name={service.props.nameCustumer || ""}
+                  date={service.props.date || ""}
+                  number={service.props.phoneCustumer || ""}
+                  time={service.props.time || ""}
+                  onClick={() => handleOpenModal(service.props.id)}
                   /> 
               </>
             ))

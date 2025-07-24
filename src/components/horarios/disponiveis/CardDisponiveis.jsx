@@ -21,8 +21,9 @@ const CardDisponiveis = () => {
     const GetListTimesAvaliable = async () => {
 
       const data = await listTimesAvailable();
-        setTimes(data)
-
+        const flatten = data.flat(); // Transforma [[...], [...]] em apenas [...]
+        setTimes(flatten)
+        console.log("dados:" , flatten)
 
       if (data.lengh === 0) {
         setEmpty(true);
@@ -31,6 +32,7 @@ const CardDisponiveis = () => {
       setLoading(false)
     };
     GetListTimesAvaliable();
+    console.log("times aqui: ", times);
   }, []);
 
 
@@ -78,7 +80,7 @@ const CardDisponiveis = () => {
             return (
               <Item
                 key={index}
-                Horario={time}
+                Horario={time.props}
               />
             )
           })

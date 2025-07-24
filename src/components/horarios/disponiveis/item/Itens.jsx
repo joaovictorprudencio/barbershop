@@ -1,11 +1,20 @@
 import styles from "./item.module.css";
 import disponibilidade from "../../img/ok.png";
 import dayjs from "dayjs";
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone'
+
+
+dayjs.extend(utc)
+dayjs.extend(timezone)
+
 const Item = ({ Horario }) => {
 
 
-  const { cliente, data, horario, status } = Horario;
-  const { nome, telefone } = cliente || {}; 
+
+
+  const {  date, time } = Horario;
+
 
  
 
@@ -13,10 +22,11 @@ const Item = ({ Horario }) => {
     <div className={styles.item}>
       <div className={styles.texto}>
         <h2 className={styles.data}>
-          {horario.substring(0, 5)} 
+          {time}
         </h2>
         <p className={styles.nome}>
-           Data : {dayjs(data).format("DD/MM")}
+            {dayjs(date).format("DD/MM")} 
+   
            </p>
         <p className={styles.contato}>Barbeiro: Maikon</p>
       </div>

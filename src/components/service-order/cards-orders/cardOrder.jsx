@@ -14,7 +14,7 @@ const CardOrder = ({name,number,date,time,onClick}) => {
         </Stack>
         <Stack direction={'row'} justifyContent={'space-between'} gap={2}>
             <Stack gap={2}>
-                <p className={style.tome}>Horário : {time.substring(0, 5)}</p>
+                <p className={style.tome}>Horário : {time}</p>
                 <p className={style.name}>cliente : {name}</p>
                 <p className={style.number}>contato : {number}</p>
             </Stack>
