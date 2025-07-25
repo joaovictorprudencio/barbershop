@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const listTimesToday = async () => {
     try {
-     
+    
 
         const response = await axios.get(`${import.meta.env.VITE_API_URL}/times/unavailable`, {
             headers: {
