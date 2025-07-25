@@ -43,7 +43,7 @@ const Login = () => {
       const data = await loginBarber(login.email, login.password);
 
 
-      localStorage.setItem('authToken', data.token);
+    
 
 
      navigate('/agendamentos');
