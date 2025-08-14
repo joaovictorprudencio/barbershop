@@ -6,14 +6,18 @@ const createTime = async ({ name, numberPhone, date, time }) => {
     console.log("Parâmetros recebidos:", { name, numberPhone, date, time });
     try {
 
-        const combined = Dayjs(`${date}T${time}`);
+      
 
-        const jsDate = combined.toDate();
+     const dateWithTime = Dayjs(`${date}T03:00:00.000Z`);
 
+     console.log("data a ser enviada :", dateWithTime.toISOString());
+        
 
+    
+       
         const dataTime = {
             available: false,
-            date: date,
+            date: dateWithTime.toISOString(),
             time: time,
             nameCustumer: name,
             phoneCustumer: numberPhone,

@@ -23,6 +23,7 @@ const CardDisponiveis = () => {
       const data = await listTimesAvailable();
         const flatten = data.flat(); // Transforma [[...], [...]] em apenas [...]
         setTimes(flatten)
+        console.log("TIMES DA API :",flatten )
        
 
       if (data.lengh === 0) {
