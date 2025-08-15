@@ -11,6 +11,10 @@
  margin-top: 40px;
 }
 
+.container {
+background-color: balck;
+}
+
 .noServices{
     display: flex;
     flex-direction: column;
@@ -52,7 +56,7 @@
 
 .listNotFound{
     background-color: rgb(255, 255, 255);
-    margin-top: 110px;
+    margin-top: 10px;
 }
 
 
@@ -76,6 +80,6 @@
     }
 
     .content {
-        height: 80vb;
+     margin-bottom: 20%;  /*  */
     }
 }

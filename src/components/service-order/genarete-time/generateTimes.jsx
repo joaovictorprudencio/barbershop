@@ -1,35 +1,22 @@
 import style from "./generateTimes.module.css"
 import axios from "axios";
 
-
-
-
-
-const generateTimes = () => {
-
-
-
+const GenerateTimes = () => {
 
     const generateTime = () => {
-        // return axios.get(`${import.meta.env.VITE_API_URL}/times/unavailable`, {
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //     }
-        // });
+        return axios.get(`${import.meta.env.VITE_API_URL}/times/config`, {
+            headers: {
+                "Content-Type": "application/json",
+            }
+        });
 
-        console.log("gerou");
     }
-
-
-
-
-
 
     return (
         <div class={style.component}>
             <section class={style.content}>
                 <button class={style.button} onClick={generateTime}>
-                    Gerar horarios do dia
+                    Gerar Rotina
                 </button>
             </section>
         </div>
@@ -37,4 +24,4 @@ const generateTimes = () => {
 }
 
 
-export default generateTimes;
+export default GenerateTimes;

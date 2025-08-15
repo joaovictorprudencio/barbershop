@@ -8,7 +8,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import {DeleteOrderDialog} from "./components/DeleteOrderDialog.jsx";
 import {useListTimesToday} from "../../services/list-times-today-service.js";
 
-import  generateTimes from "./genarete-time/generateTimes.jsx";
+import  GenerateTimes from "./genarete-time/generateTimes.jsx";
 
 
 const serviceOrderList = () => {
@@ -75,6 +75,10 @@ const serviceOrderList = () => {
             onClose={handleCloseModal}
             orderId={openModal.orderId}
         />
+
+        <section className={style.container}>
+          <GenerateTimes/>
+        </section>
 
       <section className={style.content}>
 
