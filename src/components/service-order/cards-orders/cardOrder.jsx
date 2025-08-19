@@ -7,10 +7,15 @@ import {Delete} from "@mui/icons-material";
 
 const CardOrder = ({name,number,date,time,onClick}) => {
 
+    const [year, month, day] = date.split("T")[0].split("-");
+
+  const formattedDate = `${day}/${month}`;
+
+
   return (
     <div className={style.card}>
         <Stack>
-            <h1 className={style.date}>{dayjs(date).format("DD/MM")}</h1>
+            <h1 className={style.date}>{formattedDate}</h1>
         </Stack>
         <Stack direction={'row'} justifyContent={'space-between'} gap={2}>
             <Stack gap={2}>
