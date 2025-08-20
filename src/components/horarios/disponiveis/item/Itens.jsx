@@ -15,6 +15,10 @@ const Item = ({ Horario }) => {
 
   const {  date, time } = Horario;
 
+     const [year, month, day] = date.split("T")[0].split("-");
+  
+    const formattedDate = `${day}/${month}`;
+
 
  
 
@@ -25,7 +29,7 @@ const Item = ({ Horario }) => {
           {time}
         </h2>
         <p className={styles.nome}>
-            {dayjs(date).format("DD/MM")} 
+            {formattedDate} 
    
            </p>
         <p className={styles.contato}>Barbeiro: Maikon</p>
