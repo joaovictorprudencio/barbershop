@@ -149,6 +149,7 @@ const BookmarkPage = () => {
                     console.log("date no input  : " ,date)
                   }}
                   minDate={dayjs()}
+                  shouldDisableDate={(date) => date.day() === 0}
                 />
               </DemoContainer>
             </LocalizationProvider>
@@ -183,7 +184,6 @@ const BookmarkPage = () => {
                 <option value={"10:30"}>10:30</option>
                 <option value={"11:00"}>11:00</option>
                 <option value={"11:30"}>11:30</option>
-                <option value={"12:00"}>12:00</option>
                 <option value={"14:00"}>14:00</option>
                 <option value={"14:30"}>14:30</option>
                 <option value={"15:00"}>15:00</option>
@@ -196,7 +196,6 @@ const BookmarkPage = () => {
                 <option value={"18:30"}>18:30</option>
                 <option value={"19:00"}>19:00</option>
                 <option value={"19:30"}>19:30</option>
-                <option value={"20:00"}>20:00</option>
               </NativeSelect>
             </FormControl>
             {
