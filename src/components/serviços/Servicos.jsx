@@ -21,7 +21,7 @@ const Servicos = () => {
       <CardService
       titulo="Corte Social"
       imagem={tesoura}
-       preco={`$${(23).toFixed(2)}`}
+       preco={`$${(25).toFixed(2)}`}
        texto="O corte na tesoura tem uma melhor remodelação, proporcionando um acabamento natural e detalhado."
        />
       
@@ -29,14 +29,14 @@ const Servicos = () => {
       <CardService
         titulo="Degrade  maquina"
         imagem={degradeNavalhado}
-        preco={`$${(28).toFixed(2)}`}
+        preco={`$${(30).toFixed(2)}`}
         texto="Estilo moderno com laterais raspadas em degradê mais evidente, garatiindo um sivual mais estiloso."
       />
 
       <CardService
         titulo="Degrade navalhado"
         imagem={degradeNavalhado}
-        preco={`$${(33).toFixed(2)}`}
+        preco={`$${(35).toFixed(2)}`}
         texto="Estilo moderno com laterais raspadas em degradê mais evidente, garatiindo um sivual mais estiloso."
       />
 
@@ -56,11 +56,18 @@ const Servicos = () => {
         texto=' O corte americano tem laterais curtas e topo mais longo, oferecendo um visual clássico e versátil.'
       />
 
+         <CardService
+        titulo="Corte do jaca"
+        imagem={social}
+        preco={`$${(38).toFixed(2)}`}
+        texto=' O corte americano tem laterais curtas e topo mais longo, oferecendo um visual clássico e versátil.'
+      />
+
 
       <CardService
         titulo="degrade moicano"
         imagem={degradeNavalhado}
-        preco={`$${(28).toFixed(2)}`}
+        preco={`$${(30).toFixed(2)}`}
         texto="O moicano tem laterais raspadas e topo longo, destacando atitude e estilo."
       />
 
@@ -85,19 +92,19 @@ const Servicos = () => {
       <CardService
         titulo="Pig corte"
         imagem={barba}
-        preco={`$${(15).toFixed(2)}`}
+        preco={`$${(20).toFixed(2)}`}
         texto=' Aparo, remodelação e remoção completa da barba com navalha, proporcionando melhor acabamento.'
       />
       <CardService
         titulo="Pig barba"
         imagem={barba}
-        preco={`$${(15).toFixed(2)}`}
+        preco={`$${(20).toFixed(2)}`}
         texto=' Aparo, remodelação e remoção completa da barba com navalha, proporcionando melhor acabamento.'
       />
       <CardService
         titulo="Sobrancelha"
         imagem={sombrancelha}
-        preco={`$${(7).toFixed(2)}`}
+        preco={`$${(8).toFixed(2)}`}
         texto=' Aparo, remodelação e remoção completa da barba com navalha, proporcionando melhor acabamento.'
       />
       <CardService
@@ -113,9 +120,9 @@ const Servicos = () => {
         texto=' Aparo, remodelação e remoção completa da barba com navalha, proporcionando melhor acabamento.'
       />
       <CardService
-        titulo="Platinado"
+        titulo="Nevou"
         imagem={barba}
-        preco={`$${(110).toFixed(2)}`}
+        preco={`$${(120).toFixed(2)}`}
         texto=' Aparo, remodelação e remoção completa da barba com navalha, proporcionando melhor acabamento.'
       />
 
