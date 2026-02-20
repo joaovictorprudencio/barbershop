@@ -14,7 +14,7 @@ const Servicos = () => {
       <CardService
         titulo="Corte na tesoura"
         imagem={tesoura}
-        preco={`$${(25).toFixed(2)}`}
+        preco={`$${(27).toFixed(2)}`}
         texto="O corte na tesoura tem uma melhor remodelação, proporcionando um acabamento natural e detalhado."
       />
 
@@ -44,7 +44,7 @@ const Servicos = () => {
       <CardService
         titulo="Corte mullet"
         imagem={social}
-        preco={`$${(25).toFixed(2)}`}
+        preco={`$${(27).toFixed(2)}`}
         texto='O corte mullet tem frente e laterais curtas, com a parte de trás longa, combinando estilo retrô e moderno.'
       />
 
@@ -52,7 +52,7 @@ const Servicos = () => {
       <CardService
         titulo="Corte americano"
         imagem={social}
-        preco={`$${(25).toFixed(2)}`}
+        preco={`$${(27).toFixed(2)}`}
         texto=' O corte americano tem laterais curtas e topo mais longo, oferecendo um visual clássico e versátil.'
       />
 
