@@ -109,9 +109,9 @@ const Servicos = () => {
       />
       <CardService
         titulo="Pezinho"
-        imagem={barba}
+        imagem={degradeNavalhado}
         preco={`$${(7).toFixed(2)}`}
-        texto=' Aparo, remodelação e remoção completa da barba com navalha, proporcionando melhor acabamento.'
+        texto='  Remodelação e remoção completa do pezinho com navalha, proporcionando melhor acabamento.'
       />
       <CardService
         titulo="Luzes"
