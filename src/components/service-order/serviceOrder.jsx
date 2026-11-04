@@ -38,14 +38,14 @@ const ServiceOrderList = () => {
   };
 
   return (
-    <Box sx={{ bgcolor: "background.default", minHeight: "100vh", pb: 6 }}>
+    <Box sx={{ bgcolor: "background.default", minHeight: "100vh", display: "flex", flexDirection: "column" }}>
       <DeleteOrderDialog
         open={openModal.open}
         onClose={handleCloseModal}
         orderId={openModal.orderId}
       />
 
-      <Container maxWidth="md" sx={{ py: { xs: 4, md: 6 } }}>
+      <Container maxWidth="md" sx={{ flex: 1, py: { xs: 4, md: 6 } }}>
         <Stack spacing={3}>
           <Stack
             direction={{ xs: "column", sm: "row" }}

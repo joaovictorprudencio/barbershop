@@ -71,7 +71,8 @@ const Login = () => {
         flex: 1,
         display: 'flex',
         flexDirection: 'column',
-        py: { xs: 3, sm: 5, md: 8 },
+        minHeight: '100vh',
+        pt: { xs: 3, sm: 5, md: 8 },
         background:
           'radial-gradient(circle at 12% 0%, rgba(228, 110, 15, 0.22), transparent 45%), linear-gradient(180deg, #2f2f2f 0%, #1b1b1b 100%)',
       }}

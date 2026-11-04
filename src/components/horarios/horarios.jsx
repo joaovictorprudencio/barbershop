@@ -8,8 +8,8 @@ import Footer from "../footer/Footer";
 import CardMarcar from "./CardMarcar/CardMarcar";
 
 const Horarios = () => (
-  <Box sx={{ bgcolor: "background.default", minHeight: "100vh", pb: 6 }}>
-    <Container maxWidth="md" sx={{ py: { xs: 4, md: 6 } }}>
+  <Box sx={{ bgcolor: "background.default", minHeight: "100vh", display: "flex", flexDirection: "column" }}>
+    <Container maxWidth="md" sx={{ flex: 1, py: { xs: 4, md: 6 } }}>
       <Stack spacing={3}>
         <Stack spacing={1}>
           <Typography variant="h4" component="h1" fontWeight={700} color="common.white">

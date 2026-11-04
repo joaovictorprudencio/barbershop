@@ -6,7 +6,7 @@ import { formatDateBR } from "../../../../utils/formats";
 
 const BARBER_NAME = "Maikon";
 
- Item = ({ Horario }) => {
+const Item = ({ Horario }) => {
   const { date, time } = Horario ?? {};
 
   return (

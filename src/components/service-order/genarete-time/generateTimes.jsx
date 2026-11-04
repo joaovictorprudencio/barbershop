@@ -48,7 +48,7 @@ const GenerateTimes = () => {
 
   return (
     <>
-     
+      <Paper
         variant="outlined"
         sx={{
           p: { xs: 2, sm: 3 },

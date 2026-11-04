@@ -96,7 +96,7 @@ const BookmarkPage = () => {
   const inlineError = error && error.field !== 'submit' ? error : null;
 
   return (
-    <Box sx={{ bgcolor: 'background.default', minHeight: '100vh', pb: 6 }}>
+    <Box sx={{ bgcolor: 'background.default', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <MaterialModal
         open={feedback.open}
         messageMain={feedback.title}
@@ -104,7 +104,7 @@ const BookmarkPage = () => {
         onClose={() => setFeedback((current) => ({ ...current, open: false }))}
       />
 
-      <Container maxWidth="md" sx={{ py: { xs: 2, sm: 3, md: 5 } }}>
+      <Container maxWidth="md" sx={{ flex: 1, py: { xs: 2, sm: 3, md: 5 } }}>
         <Stack direction="row" spacing={1.5} alignItems="center" sx={{ mb: 0.5 }}>
           <Box component="img" src={calendario} alt="" sx={{ width: 36, height: 36, flexShrink: 0 }} />
           <Typography

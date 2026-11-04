@@ -10,8 +10,8 @@ import { CATEGORY_LABELS, getLowestPrice, getServicesByCategory } from '../../da
 import { formatCurrency } from '../../utils/formats';
 
 const Servicos = () => (
-  <Box sx={{ bgcolor: 'background.default', minHeight: '100vh', pb: 6 }}>
-    <Container maxWidth="lg" sx={{ py: { xs: 4, md: 6 } }}>
+  <Box sx={{ bgcolor: 'background.default', minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <Container maxWidth="lg" sx={{ flex: 1, py: { xs: 4, md: 6 } }}>
       <Stack spacing={1} alignItems="center" textAlign="center" sx={{ mb: 5 }}>
         <Stack direction="row" spacing={1} alignItems="center">
           <ContentCutOutlinedIcon color="primary" />
