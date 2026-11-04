@@ -1,156 +1,79 @@
-import CardService from "./cardServiços/CardService";
-import Footer from '../footer/Footer'
-import styles from './Servicos.module.css'
-import corteTesoura from './img/corteTesoura.png'
-import barba from './img/barba.png'
-import degradeNavalhado from './img/degrade.jfif'
-import social from './img/corteSocial.png'
-import tesoura from "./img/tesoura.jpg"
-import sombrancelha from "./img/sombran.jpg"
-const Servicos = () => {
-  return (
-    <div className={styles.paginaService} >
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Divider from '@mui/material/Divider';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import ContentCutOutlinedIcon from '@mui/icons-material/ContentCutOutlined';
+import Footer from '../footer/Footer';
+import CardService from './cardServiços/CardService';
+import { CATEGORY_LABELS, getLowestPrice, getServicesByCategory } from '../../data/services';
+import { formatCurrency } from '../../utils/formats';
 
-      <CardService
-        titulo="Corte na tesoura"
-        imagem={tesoura}
-        preco={`$${(27).toFixed(2)}`}
-        texto="O corte na tesoura tem uma melhor remodelação, proporcionando um acabamento natural e detalhado."
-      />
+const Servicos = () => (
+  <Box sx={{ bgcolor: 'background.default', minHeight: '100vh', pb: 6 }}>
+    <Container maxWidth="lg" sx={{ py: { xs: 4, md: 6 } }}>
+      <Stack spacing={1} alignItems="center" textAlign="center" sx={{ mb: 5 }}>
+        <Stack direction="row" spacing={1} alignItems="center">
+          <ContentCutOutlinedIcon color="primary" />
+          <Typography variant="h4" component="h1" fontWeight={700} color="common.white">
+            Serviços
+          </Typography>
+        </Stack>
+        <Typography variant="body1" color="rgba(255,255,255,.7)" sx={{ maxWidth: 560 }}>
+          Confira a tabela completa de serviços e valores da barbearia.
+        </Typography>
+      </Stack>
 
-      <CardService
-      titulo="Corte Social"
-      imagem={tesoura}
-       preco={`$${(25).toFixed(2)}`}
-       texto="O corte na tesoura tem uma melhor remodelação, proporcionando um acabamento natural e detalhado."
-       />
-      
+      {CATEGORY_LABELS.map(({ id, title }) => {
+        const items = getServicesByCategory(id);
+        if (items.length === 0) return null;
 
-      <CardService
-        titulo="Degrade  maquina"
-        imagem={degradeNavalhado}
-        preco={`$${(30).toFixed(2)}`}
-        texto="Estilo moderno com laterais raspadas em degradê mais evidente, garatiindo um sivual mais estiloso."
-      />
+        return (
+          <Box key={id} sx={{ mb: 5 }}>
+            <Stack direction="row" spacing={2} alignItems="center" sx={{ mb: 2 }}>
+              <Typography variant="h6" component="h2" fontWeight={600} color="common.white">
+                {title}
+              </Typography>
+              <Divider sx={{ flex: 1, borderColor: 'rgba(255,255,255,.2)' }} />
+            </Stack>
 
-      <CardService
-        titulo="Degrade navalhado"
-        imagem={degradeNavalhado}
-        preco={`$${(35).toFixed(2)}`}
-        texto="Estilo moderno com laterais raspadas em degradê mais evidente, garatiindo um sivual mais estiloso."
-      />
+            <Box
+              sx={{
+                display: 'grid',
+                gridTemplateColumns: {
+                  xs: 'repeat(2, minmax(0, 1fr))',
+                  sm: 'repeat(3, minmax(0, 1fr))',
+                  lg: 'repeat(4, minmax(0, 1fr))',
+                },
+                gap: { xs: 1.5, md: 2 },
+              }}
+            >
+              {items.map((item) => (
+                <CardService
+                  key={item.id}
+                  name={item.name}
+                  imagem={item.image}
+                  texto={item.description}
+                  preco={item.price}
+                />
+              ))}
+            </Box>
+          </Box>
+        );
+      })}
 
+      <Stack spacing={0.5} alignItems="center" sx={{ mt: 4 }}>
+        <Typography variant="body2" color="rgba(255,255,255,.7)">
+          Menos 50% do valor é pago como reserva e o restante na barbearia.
+        </Typography>
+        <Typography variant="caption" color="rgba(255,255,255,.5)">
+          A partir de {formatCurrency(getLowestPrice())}
+        </Typography>
+      </Stack>
+    </Container>
 
-      <CardService
-        titulo="Corte mullet"
-        imagem={social}
-        preco={`$${(27).toFixed(2)}`}
-        texto='O corte mullet tem frente e laterais curtas, com a parte de trás longa, combinando estilo retrô e moderno.'
-      />
-
-
-      <CardService
-        titulo="Corte americano"
-        imagem={social}
-        preco={`$${(27).toFixed(2)}`}
-        texto=' O corte americano tem laterais curtas e topo mais longo, oferecendo um visual clássico e versátil.'
-      />
-
-         <CardService
-        titulo="Corte do jaca"
-        imagem={social}
-        preco={`$${(38).toFixed(2)}`}
-        texto=' O corte americano tem laterais curtas e topo mais longo, oferecendo um visual clássico e versátil.'
-      />
-
-
-      <CardService
-        titulo="degrade moicano"
-        imagem={degradeNavalhado}
-        preco={`$${(30).toFixed(2)}`}
-        texto="O moicano tem laterais raspadas e topo longo, destacando atitude e estilo."
-      />
-
-      <CardService
-        titulo="barba"
-        imagem={barba}
-        preco={`$${(15).toFixed(2)}`}
-        texto=' Remoção completa da barba com navalha, garantindo um barbear rente e confortável.'
-      />
-      <CardService
-        titulo="barba desenhada"
-        imagem={barba}
-        preco={`$${(18).toFixed(2)}`}
-        texto='A barba desenhada tem contornos definidos, realçando o rosto com estilo.'
-      />
-      <CardService
-        titulo="barba degradê"
-        imagem={barba}
-        preco={`$${(23).toFixed(2)}`}
-        texto=' É um Estilo classico com laterais baixas e topo alinhado, ideal para um visual elegante'
-      />
-      <CardService
-        titulo="Pig corte"
-        imagem={barba}
-        preco={`$${(20).toFixed(2)}`}
-        texto=' Aparo, remodelação e remoção completa da barba com navalha, proporcionando melhor acabamento.'
-      />
-      <CardService
-        titulo="Pig barba"
-        imagem={barba}
-        preco={`$${(20).toFixed(2)}`}
-        texto=' Aparo, remodelação e remoção completa da barba com navalha, proporcionando melhor acabamento.'
-      />
-      <CardService
-        titulo="Sobrancelha"
-        imagem={sombrancelha}
-        preco={`$${(8).toFixed(2)}`}
-        texto=' Aparo, remodelação e remoção completa da barba com navalha, proporcionando melhor acabamento.'
-      />
-      <CardService
-        titulo="Pezinho"
-        imagem={degradeNavalhado}
-        preco={`$${(7).toFixed(2)}`}
-        texto='  Remodelação e remoção completa do pezinho com navalha, proporcionando melhor acabamento.'
-      />
-      <CardService
-        titulo="Luzes"
-        imagem={barba}
-        preco={`$${(50).toFixed(2)}`}
-        texto=' Aparo, remodelação e remoção completa da barba com navalha, proporcionando melhor acabamento.'
-      />
-      <CardService
-        titulo="Nevou"
-        imagem={barba}
-        preco={`$${(120).toFixed(2)}`}
-        texto=' Aparo, remodelação e remoção completa da barba com navalha, proporcionando melhor acabamento.'
-      />
-
-      <CardService
-        titulo="Reflexo alinhado"
-        imagem={barba}
-        preco={`$${(65).toFixed(2)}`}
-        texto=' Aparo, remodelação e remoção completa da barba com navalha, proporcionando melhor acabamento.'
-      />
-
-      <CardService
-        titulo="Bigode"
-        imagem={barba}
-        preco={`$${(4).toFixed(2)}`}
-        texto=' Aparo, remodelação e remoção completa da barba com navalha, proporcionando melhor acabamento.'
-      />
-
-      <CardService
-        titulo="Aparar barba"
-        imagem={barba}
-        preco={`$${(5).toFixed(2)}`}
-        texto=' Aparo, remodelação e remoção completa da barba com navalha, proporcionando melhor acabamento.'
-      />
-
-      <Footer />
-
-    </div>
-  )
-}
+    <Footer />
+  </Box>
+);
 
 export default Servicos;

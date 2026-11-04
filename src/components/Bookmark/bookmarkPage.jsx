@@ -1,280 +1,256 @@
-/* eslint-disable no-unused-vars */
-// eslint-disable-next-line no-unused-vars
-import React from "react";
-import { useState, useEffect } from "react";
-import styles from "./bookmarkPage.module.css";
-import calendario from "./img/calendario.png";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers";
-import dayjs from "dayjs";
-import Footer from "../footer/Footer";
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import FormControl from "@mui/material/FormControl";
-import NativeSelect from "@mui/material/NativeSelect";
-import TextField from "@mui/material/TextField";
-import WhatsAppIcon from "./img/whatsapp.png";
-import pixcopy from "./img/document copi.png";
-import { useCreateTime } from "../../services/create-time";
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import MaterialModal from "../modal/modal";
-import { CircularProgress, Typography } from "@mui/material";
-import { useFormik } from "formik";
-import * as Yup from 'yup';
+import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
+import Stack from '@mui/material/Stack';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+import Stepper from '@mui/material/Stepper';
+import Typography from '@mui/material/Typography';
+import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
+import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
+import calendario from './img/calendario.png';
+import Footer from '../footer/Footer';
+import MaterialModal from '../modal/modal';
+import DateSelector from '../Booking/DateSelector';
+import TimeSelector from '../Booking/TimeSelector';
+import ServiceSelector from '../Booking/ServiceSelector';
+import BookingCheckout from '../Booking/BookingCheckout';
+import CardConfirm from './confirmação/CardConfirm';
+import { STEP_IDS } from '../Booking/bookingRules';
+import { useCreateTime } from '../../services/create-time';
+import { useAllTimes } from '../../services/available-times';
+import { useBookingFlow } from '../../hooks/useBookingFlow';
+import { selectBookableSlots } from '../../utils/schedule';
+import { formatDateBR, toApiDate } from '../../utils/formats';
+
+const NEXT_LABEL = {
+  services: 'Escolher data e horário',
+  'date-time': 'Ir para o checkout',
+};
 
 const BookmarkPage = () => {
-
-  const TimeValidation = Yup.object().shape({
-    name: Yup.string().required('O nome é obrigatório'),
-    time: Yup.string().required('Horário é obrigatorio'),
-    numberPhone: Yup.string().required('Numero de celular é obrigatorio'),
-  })
-
   const pixKey = import.meta.env.VITE_KEY;
-  const [openModal, setOpenModal] = useState(false)
-  
-  const { mutateAsync: createTime, isPending: loadingCreateTime } = useCreateTime()
-  
-  const [value, setValue] = useState(dayjs());
-    
-  const [date , setDate] = useState(dayjs().format("YYYY-MM-DD"));
-  
-  const [title , setTitle] = useState("");
-  
-  const [ message , setMessage] = useState("");
-  
-  
-  const create = async ({name, numberPhone, date, time}) => {
-    
-    
-    try {
-      console.log(`data no compoenete: ${date}`)
-      const data = await createTime({name, numberPhone, date, time});
-      
-      setOpenModal(true);
-      setTitle("Horário marcado");
-      setMessage(`Seu horário foi marcado para as ${dayjs(time, "HH:mm").format("HH:mm")} no dia ${dayjs(date).format("DD/MM")} com sucesso ${name} !`);
-      
-      console.log("Data recebida da API:", data);
-    } catch (error) {
-      setOpenModal(true);
-      setTitle("Horário está indisponível");
-      setMessage("Infelizmente não temos esse horário disponível para essa data");
-      
-      console.error("Erro ao marcar horário:", error);
-    }
-  }
-  
-  const formik = useFormik({
-    initialValues: {
-      name: '',
-      time: '',
-      numberPhone: '',
-      date: dayjs().format("YYYY-MM-DD")
-    },
-    validationSchema: TimeValidation,
-    onSubmit: async (values) => {
-      try {
-        await create({...values})
-      } catch (e) {
-        console.error(e)
+  const [feedback, setFeedback] = useState({ open: false, title: '', message: '' });
+
+  const { mutateAsync: createTime, isPending: isCreating } = useCreateTime();
+
+  const handleSubmit = useCallback(
+    async ({ date, times, customer }) => {
+      const apiDate = toApiDate(date);
+
+      for (const time of times) {
+        await createTime({
+          name: customer.name,
+          numberPhone: customer.phone,
+          date: apiDate,
+          time,
+        });
       }
-    }
-  })
+    },
+    [createTime],
+  );
 
+  const booking = useBookingFlow({ onSubmit: handleSubmit });
 
- 
-    const number = '5585998160243';
-    const messege = "envie o comprovante pix!";
-    const encodeMessege = encodeURIComponent(messege);
-    const whatsappLink = `https://wa.me/${number}?text=${encodeMessege}`
+  const {
+    currentStep,
+    selectedDate,
+    selectedTimes,
+    selectedServices,
+    customer,
+    total,
+    reservationAmount,
+    requiredSlots,
+    multipleSlotsRequired,
+    missingSlots,
+    missingSlotsHint,
+    status,
+    error,
+    confirmation,
+  } = booking;
+
   
+  const { data: existingTimes, isLoading: loadingTimes, isError: timesError } = useAllTimes();
 
-  const handleRedirec = () => {
-    window.location.href = whatsappLink;
-  }
+  const { slots, routineGenerated } = useMemo(() => {
+    
+    if (timesError) return { slots: [], routineGenerated: true };
+    return selectBookableSlots({ date: selectedDate, existingTimes });
+  }, [selectedDate, existingTimes, timesError]);
 
-
- 
-
-  const handleCopy = () => {
-    if (navigator.clipboard && window.isSecureContext) {
-      navigator.clipboard.writeText(pixKey)
-        .then(() => alert("Chave pix copiada!"))
-        .catch(err => fallbackCopy());
-    } else {
-      fallbackCopy();
+  useEffect(() => {
+    if (status === 'error' && error) {
+      setFeedback({
+        open: true,
+        title: 'Horário indisponível',
+        message: error.message,
+      });
     }
-  };
-  
-  const fallbackCopy = () => {
-    const textArea = document.createElement("textarea");
-    textArea.value = pixKey;
-    document.body.appendChild(textArea);
-    textArea.select();
-    document.execCommand("copy");
-    document.body.removeChild(textArea);
-    alert("Chave pix copiada!");
-  };
+  }, [error, status]);
+
+  const activeStep = STEP_IDS.indexOf(currentStep);
+  const isLastStep = activeStep === STEP_IDS.length - 1;
+  const isConfirmed = status === 'success' && Boolean(confirmation);
+  const inlineError = error && error.field !== 'submit' ? error : null;
 
   return (
-    <div className={styles.componentTela}>
-      <MaterialModal 
-        open={openModal}
-        messageMain={title}
-        message={message}
-        onClose={() => setOpenModal(false)}
+    <Box sx={{ bgcolor: 'background.default', minHeight: '100vh', pb: 6 }}>
+      <MaterialModal
+        open={feedback.open}
+        messageMain={feedback.title}
+        message={feedback.message}
+        onClose={() => setFeedback((current) => ({ ...current, open: false }))}
       />
-      <section className={styles.cardContent}>
-        <div className={styles.cardForm}>
-          <div className={styles.titulo}>
-            <img className={styles.icon} src={calendario} alt="" />
-            <h3>agendamento</h3>
-          </div>
-          <Box sx={{ marginTop: 5, width: 200 }}>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DemoContainer components={["DatePicker"]}>
-                <DatePicker
-                  label="Data do corte"
-                  format="YYYY-MM-DD"
-                  value={value}
-                  onChange={(newValue) => { 
-                    const formatDate = dayjs(newValue).format("YYYY-MM-DD")
-                    console.log("Formatado:", formatDate);
-                    formik.setFieldValue("date", formatDate);
-                    setValue(newValue)
-                    setDate(formatDate)
-                    console.log("date no input  : " ,date)
-                  }}
-                  minDate={dayjs()}
-                  shouldDisableDate={(date) => date.day() === 0}
+
+      <Container maxWidth="md" sx={{ py: { xs: 2, sm: 3, md: 5 } }}>
+        <Stack direction="row" spacing={1.5} alignItems="center" sx={{ mb: 0.5 }}>
+          <Box component="img" src={calendario} alt="" sx={{ width: 36, height: 36, flexShrink: 0 }} />
+          <Typography
+            variant="h4"
+            component="h1"
+            fontWeight={700}
+            color="common.white"
+            sx={{ fontSize: { xs: '1.6rem', sm: '2.125rem' }, minWidth: 0 }}
+          >
+            Agendamento
+          </Typography>
+        </Stack>
+        <Typography variant="body2" color="rgba(255,255,255,.7)" sx={{ mb: 3 }}>
+          Escolha os serviços, a data e os horários. A reserva é garantida com 50% do valor.
+        </Typography>
+
+        <Paper variant="outlined" sx={{ p: { xs: 1.5, sm: 3, md: 4 }, borderRadius: 4, minWidth: 0 }}>
+          {isConfirmed ? (
+            <CardConfirm confirmation={confirmation} />
+          ) : (
+            <Stack spacing={2.5}>
+              <Stepper
+                activeStep={activeStep}
+                alternativeLabel
+                sx={{
+                  '& .MuiStepLabel-label': {
+                    fontSize: '0.75rem',
+                    lineHeight: 1.25,
+                    mt: 0.5,
+                  },
+                  '& .MuiStepIcon-root': { fontSize: { xs: '1.5rem', sm: '1.75rem' } },
+                }}
+              >
+                {booking.steps.map((step) => (
+                  <Step key={step.id} sx={{ minWidth: 0 }}>
+                    <StepLabel>{step.label}</StepLabel>
+                  </Step>
+                ))}
+              </Stepper>
+
+              {currentStep === 'services' && (
+                <ServiceSelector
+                  selectedServices={selectedServices}
+                  onToggle={booking.toggleService}
                 />
-              </DemoContainer>
-            </LocalizationProvider>
-          </Box>
+              )}
 
-          <Box sx={{ marginTop: 5, width: 200 }}>
-            <FormControl fullWidth>
-              <InputLabel
-                variant="standard"
-                htmlFor="uncontrolled-native"
-                shrink={formik.values.time === "" || formik.values.time !== ""}
-              >
-                Horario
-              </InputLabel>
-              <NativeSelect
-                name="time"
-                value={formik.values.time}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                error={formik.touched.time && Boolean(formik.errors.time)}
-                inputProps={{
-                  id: "uncontrolled-native",
-                }}
-                style={{
-                  color: (formik.touched.time && Boolean(formik.errors.time)) ? '#E53935' : '#000'
-                }}
-              >
-                <option value={"00:00"}>Escolher</option>
-                <option value={"09:00"}>9:00</option>
-                <option value={"09:30"}>9:30</option>
-                <option value={"10:00"}>10:00</option>
-                <option value={"10:30"}>10:30</option>
-                <option value={"11:00"}>11:00</option>
-                <option value={"11:30"}>11:30</option>
-                <option value={"14:00"}>14:00</option>
-                <option value={"14:30"}>14:30</option>
-                <option value={"15:00"}>15:00</option>
-                <option value={"15:30"}>15:30</option>
-                <option value={"16:00"}>16:00</option>
-                <option value={"16:30"}>16:30</option>
-                <option value={"17:00"}>17:00</option>
-                <option value={"17:30"}>17:30</option>
-                <option value={"18:00"}>18:00</option>
-                <option value={"18:30"}>18:30</option>
-                <option value={"19:00"}>19:00</option>
-                <option value={"19:30"}>19:30</option>
-              </NativeSelect>
-            </FormControl>
-            {
-              (formik.touched.time && Boolean(formik.errors.time)) && (
-                <Typography fontSize={12} color="error">{formik.errors.time}</Typography>
-              )
-            }
-          </Box>
+              {currentStep === 'date-time' && (
+                <Box
+                  sx={{
+                    display: { xs: 'flex', md: 'grid' },
+                    flexDirection: 'column',
+                    gridTemplateColumns: { md: 'minmax(0, 1fr) minmax(0, 1fr)' },
+                    gap: 3,
+                  }}
+                >
+                  <Box sx={{ minWidth: 0 }}>
+                    <DateSelector
+                      value={selectedDate}
+                      onChange={booking.setDate}
+                      error={inlineError?.field === 'date'}
+                    />
+                  </Box>
+                  <Box sx={{ minWidth: 0 }}>
+                    <TimeSelector
+                      times={slots}
+                      value={selectedTimes}
+                      onChange={booking.toggleTime}
+                      loading={loadingTimes}
+                      dateLabel={formatDateBR(selectedDate)}
+                      requiredSlots={requiredSlots}
+                      serviceIds={selectedServices.map((service) => service.id)}
+                      routineGenerated={routineGenerated}
+                    />
+                  </Box>
+                </Box>
+              )}
 
-          <Box
-            component="form"
-            sx={{ "& > :not(style)": { m: 1, width: 200, mt: 5 } }}
-            noValidate
-            autoComplete="off"
-          >
-            <TextField
-              id="standard-basic"
-              label="Nome"
-              name={'name'}
-              variant="standard"
-              onChange={formik.handleChange}
-              value={formik.values.name}  
-              error={formik.touched.name && Boolean(formik.errors.name)}
-              onBlur={formik.handleBlur}
-              helperText={
-                formik.touched.name && formik.errors.name
-              }
-            />
+              {currentStep === 'checkout' && (
+                <BookingCheckout
+                  date={selectedDate}
+                  times={selectedTimes}
+                  services={selectedServices}
+                  total={total}
+                  reservationAmount={reservationAmount}
+                  requiredSlots={requiredSlots}
+                  multipleSlotsRequired={multipleSlotsRequired}
+                  customer={customer}
+                  onCustomerChange={booking.setCustomerField}
+                  onBack={booking.previousStep}
+                  onConfirm={booking.confirm}
+                  loading={isCreating}
+                  error={inlineError}
+                  pixKey={pixKey}
+                />
+              )}
 
-          </Box>
+              {!isLastStep && (
+                <Stack
+                  direction="row"
+                  spacing={1.5}
+                  justifyContent="space-between"
+                  sx={{ pt: 1 }}
+                >
+                  <Button
+                    variant="text"
+                    startIcon={<ArrowBackOutlinedIcon />}
+                    onClick={booking.previousStep}
+                    disabled={activeStep === 0}
+                    sx={{ minHeight: 44, px: { xs: 1, sm: 2 } }}
+                  >
+                    Voltar
+                  </Button>
+                  <Button
+                    variant="contained"
+                    endIcon={<ArrowForwardOutlinedIcon />}
+                    onClick={booking.nextStep}
+                    disabled={
+                      (currentStep === 'services' && selectedServices.length === 0) ||
+                      (currentStep === 'date-time' && missingSlots > 0)
+                    }
+                    sx={{
+                      minHeight: 48,
+                      px: 3,
+                      flex: { xs: 1, sm: 'initial' },
+                      minWidth: 0,
+                    }}
+                  >
+                    {NEXT_LABEL[currentStep]}
+                  </Button>
+                </Stack>
+              )}
 
-          <Box
-            component="form"
-            sx={{ "& > :not(style)": { m: 1, width: 200, mt: 5 } }}
-            noValidate
-            autoComplete="off"
-          >
-            <TextField id="standard-basic"
-              label="Numero de contato"
-              variant="standard"
-              name={'numberPhone'}
-              onChange={formik.handleChange}
-              value={formik.values.numberPhone}
-              error={formik.touched.numberPhone && Boolean(formik.errors.numberPhone)}
-              onBlur={formik.handleBlur}
-              helperText={
-                formik.touched.numberPhone && formik.errors.numberPhone
-              }
-            />
-          </Box>
+          
+              {currentStep === 'date-time' && missingSlots > 0 && (
+                <Typography variant="caption" color="text.secondary" sx={{ textAlign: 'right' }}>
+                  {missingSlotsHint}
+                </Typography>
+              )}
+            </Stack>
+          )}
+        </Paper>
+      </Container>
 
-          <div className={styles.Paymment}>
-            <p> 50% do valor <br /> garante sua reserva.</p>
-          </div>
-
-          <div className={styles.firstStep}>
-            <p className={styles.messege}>.1 Copie a chave pix </p>
-            <img className={styles.copyImage} onClick={handleCopy} src={pixcopy} 
-            alt="" />
-          </div>
-
-          <div className={styles.secondStep}>
-            <p className={styles.messege} >.2 Mande o comprovante aqui </p>
-            <img className={styles.whatsappImage} onClick={handleRedirec} src={WhatsAppIcon} 
-            alt="" />
-          </div>
-
-
-          <Button
-           variant="contained"
-            sx={{ marginTop: 2, backgroundColor: 'rgb(228, 110, 15);', width: 130, height: 40 }}
-            onClick={formik.handleSubmit}
-           >
-            { loadingCreateTime ? <CircularProgress /> : 'Agendar' }
-          </Button>
-        </div>
-      </section>
       <Footer />
-    </div>
+    </Box>
   );
 };
 

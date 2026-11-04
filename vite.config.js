@@ -4,4 +4,13 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  // server: {
+  //   allowedHosts: ['create-defendant-jester.ngrok-free.dev'],
+  //   proxy: {
+  //     '/api': {
+  //       target: 'http://localhost:3000',
+  //       changeOrigin: true
+  //     }
+  //   }
+  // }
 })

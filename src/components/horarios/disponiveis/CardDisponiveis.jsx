@@ -1,93 +1,99 @@
-import styles from "./CardDisponiveis.module.css"
+import { useEffect, useState } from "react";
+import Box from "@mui/material/Box";
+import Chip from "@mui/material/Chip";
+import CircularProgress from "@mui/material/CircularProgress";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+import EventAvailableOutlinedIcon from "@mui/icons-material/EventAvailableOutlined";
+import EventBusyOutlinedIcon from "@mui/icons-material/EventBusyOutlined";
+import listTimesAvailable from "../../../services/times-available";
+import CardShell from "../CardShell";
 import Item from "./item/Itens";
-import listTimesAvailable from "../../../services/times-available"
-import { useState } from "react";
-import { useEffect } from "react";
-import CircularProgress from '@mui/material/CircularProgress';
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
+import { BUSINESS_TZ } from "../../../data/openingHours";
 
-
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 const CardDisponiveis = () => {
-
-
-
- 
-
   const [times, setTimes] = useState([]);
-  const [empty, setEmpty] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const GetListTimesAvaliable = async () => {
+    let active = true;
 
+    const getListTimesAvailable = async () => {
       const data = await listTimesAvailable();
-        const flatten = data.flat(); // Transforma [[...], [...]] em apenas [...]
-        setTimes(flatten)
-        console.log("TIMES DA API :",flatten )
-       
+      
+      const flattened = Array.isArray(data) ? data.flat() : [];
 
-      if (data.lengh === 0) {
-        setEmpty(true);
-        setLoading(false)
-      }
-      setLoading(false)
+      
+      const todayKey = dayjs().tz(BUSINESS_TZ).format("YYYY-MM-DD");
+      const todayTimes = flattened.filter((t) => {
+        const d = dayjs(t?.date);
+        return d.isValid() && d.tz(BUSINESS_TZ).format("YYYY-MM-DD") === todayKey;
+      });
+
+      if (active) setTimes(todayTimes);
+      if (active) setLoading(false);
     };
-    GetListTimesAvaliable();
-    console.log("times aqui: ", times);
+
+    getListTimesAvailable();
+
+    return () => {
+      active = false;
+    };
   }, []);
-
-
-
-
-
 
   if (loading) {
     return (
-      <div className={styles.component}>
-        <div className={styles.card}>
-        <CircularProgress size="4rem" />
-        </div>
-      </div>
-    )
-
-  } 
-
-
-  if (times.length === 0 && loading ===false) {
-    return (
-      <div className={styles.component}>
-      <div className={styles.card}>
-      <h2 className={styles.messegeNotFound}>
-            Não a Horarios disponiveis <br /> para hoje
-          </h2>
-          <img
-            src="/Empty-cuate.svg"
-            alt="Nenhum horário disponível"
-            className={styles.empty}
-          />
-      </div>
-    </div> 
-    )
+      <Paper variant="outlined" sx={{ p: 4, display: "flex", justifyContent: "center" }}>
+        <CircularProgress size="3rem" />
+      </Paper>
+    );
   }
 
-
+  if (times.length === 0) {
+    return (
+      <CardShell
+        icon={<EventBusyOutlinedIcon color="disabled" fontSize="small" />}
+        title="Nenhum horário livre hoje"
+      >
+        <Typography variant="body2" color="text.secondary">
+          A agenda de hoje já está completa. Use o botão Agendar para ver os próximos dias disponíveis.
+        </Typography>
+      </CardShell>
+    );
+  }
 
   return (
-    <div className={styles.component}>
-      <div className={styles.card}>
-        <h1 className={styles.titulo}>disponiveis para hoje</h1>
-        {
-          times.map((time, index) => {
-            return (
-              <Item
-                key={index}
-                Horario={time}
-              />
-            )
-          })
-        }
-      </div>
-    </div>
+    <CardShell
+      icon={<EventAvailableOutlinedIcon color="primary" fontSize="small" />}
+      title="Disponíveis para hoje"
+      meta={
+        <Chip
+          label={`${times.length} ${times.length > 1 ? "horários" : "horário"}`}
+          size="small"
+          color="primary"
+          variant="outlined"
+          sx={{ flexShrink: 0 }}
+        />
+      }
+    >
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: { xs: "1fr", sm: "repeat(2, minmax(0, 1fr))" },
+          gap: 1,
+        }}
+      >
+        {times.map((time, index) => (
+          <Item key={time?.id ?? `${time?.time}-${index}`} Horario={time} />
+        ))}
+      </Box>
+    </CardShell>
   );
 };
 

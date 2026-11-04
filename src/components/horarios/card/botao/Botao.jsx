@@ -1,19 +1,19 @@
-import {
-  NavLink,
-} from "react-router-dom";
+/* eslint-disable react/prop-types */
+import { Link as RouterLink } from "react-router-dom";
+import Button from "@mui/material/Button";
 
-import styles from "./Botao.module.css";
-
-
-const Botao = () => {
+const Botao = ({ label = "Agendar", to = "/marcar/form", fullWidth = false }) => {
   return (
-    <div>
-      <NavLink to="/marcar/form">
-        <button className={styles.botao}>
-          <p>Marcar Horário</p>
-        </button>
-      </NavLink>
-    </div>
+    <Button
+      component={RouterLink}
+      to={to}
+      variant="contained"
+      size="large"
+      fullWidth={fullWidth}
+      sx={{ minHeight: 48, px: 4 }}
+    >
+      {label}
+    </Button>
   );
 };
 
