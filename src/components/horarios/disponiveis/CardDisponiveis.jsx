@@ -13,6 +13,7 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import { BUSINESS_TZ } from "../../../data/openingHours";
+import { isPastSlotToday } from "../../../utils/schedule";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -31,10 +32,15 @@ const CardDisponiveis = () => {
 
       
       const todayKey = dayjs().tz(BUSINESS_TZ).format("YYYY-MM-DD");
-      const todayTimes = flattened.filter((t) => {
-        const d = dayjs(t?.date);
-        return d.isValid() && d.tz(BUSINESS_TZ).format("YYYY-MM-DD") === todayKey;
-      });
+      const todayTimes = flattened
+        .filter((t) => {
+          const d = dayjs(t?.date);
+          return d.isValid() && d.tz(BUSINESS_TZ).format("YYYY-MM-DD") === todayKey;
+        })
+        
+        .filter(
+          (t) => /^\d{2}:\d{2}$/.test(t?.time ?? "") && !isPastSlotToday(todayKey, t.time),
+        );
 
       if (active) setTimes(todayTimes);
       if (active) setLoading(false);

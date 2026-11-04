@@ -14,8 +14,6 @@ import { formatDateBR } from "../../../utils/formats";
 
 const CardOrder = ({ name, number, date, time, onClick }) => {
   const formattedDate = formatDateBR(date);
-  console.log(formattedDate)
-  console.log(date)
   const displayName = name?.trim() || "Cliente não informado";
 
   return (
@@ -73,7 +71,8 @@ const CardOrder = ({ name, number, date, time, onClick }) => {
               size="small"
               variant="outlined"
               sx={{
-                display: { xs: "none", sm: "flex" },
+                display: "flex",
+                flexShrink: 0,
                 borderColor: "divider",
                 color: "text.secondary",
               }}

@@ -30,7 +30,7 @@ export const SERVICES = [
   {
     id: 'corte-tesoura',
     name: 'Corte na tesoura',
-    price: 27,
+    price: 30,
     slots: 1,
     category: CATEGORIES.CABELO,
     image: tesouraImg,
@@ -66,7 +66,7 @@ export const SERVICES = [
   {
     id: 'corte-mullet',
     name: 'Corte mullet',
-    price: 27,
+    price: 28,
     slots: 1,
     category: CATEGORIES.CABELO,
     image: corteSocialImg,
@@ -75,7 +75,7 @@ export const SERVICES = [
   {
     id: 'corte-americano',
     name: 'Corte americano',
-    price: 27,
+    price: 28,
     slots: 1,
     category: CATEGORIES.CABELO,
     image: corteSocialImg,
