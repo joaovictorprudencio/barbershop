@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -24,7 +24,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Footer from '../footer/Footer';
 import logo from '../header/img/logo.png';
-import loginBarber from '../../services/auth-service';
+import loginBarber, { getAuthToken } from '../../services/auth-service';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -33,13 +33,19 @@ const Login = () => {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (getAuthToken()) {
+      navigate('/agendamentos', { replace: true });
+    }
+  }, [navigate]);
+
   const handleSubmit = async (credentials) => {
     setLoading(true);
     setError('');
 
     try {
       await loginBarber(credentials.email, credentials.password);
-      navigate('/agendamentos');
+      navigate('/agendamentos', { replace: true });
     } catch (err) {
       setError(err?.message || 'Não foi possível autenticar. Verifique os dados e tente novamente.');
     } finally {

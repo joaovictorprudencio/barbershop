@@ -7,6 +7,8 @@ import {
   Route,
   Routes,
   NavLink,
+  Navigate,
+  Outlet,
 } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
@@ -17,6 +19,11 @@ import Servicos from "../serviços/Servicos";
 import BookmarkPage from "../Bookmark/bookmarkPage";
 import Login from "../login/login";
 import ServiceOrder from "../service-order/serviceOrder";
+import { getAuthToken } from "../../services/auth-service";
+
+const ProtectedRoute = () => {
+  return getAuthToken() ? <Outlet /> : <Navigate to="/login" replace />;
+};
 
 const LINKS = [
   { to: "/", label: "Barbearia" },
@@ -96,7 +103,9 @@ const Header = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/agendamentos" element={<ServiceOrder />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/agendamentos" element={<ServiceOrder />} />
+          </Route>
           <Route path="/horarios" element={<Horarios />} />
           <Route path="/serviços" element={<Servicos />} />
           <Route path="/marcar" element={<Botao />} />
