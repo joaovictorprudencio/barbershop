@@ -37,15 +37,21 @@ const BookmarkPage = () => {
   const { mutateAsync: createTime, isPending: isCreating } = useCreateTime();
 
   const handleSubmit = useCallback(
-    async ({ date, times, customer }) => {
+    async ({ date, times, services, customer }) => {
       const apiDate = toApiDate(date);
+      const slotPrices = services.flatMap((service) =>
+        Array.from({ length: service.slots }, (_, slotIndex) =>
+          slotIndex === 0 ? service.price : 0,
+        ),
+      );
 
-      for (const time of times) {
+      for (const [index, time] of times.entries()) {
         await createTime({
           name: customer.name,
           numberPhone: customer.phone,
           date: apiDate,
           time,
+          price: slotPrices[index] ?? 0,
         });
       }
     },

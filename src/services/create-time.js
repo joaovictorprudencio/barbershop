@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import Dayjs from 'dayjs';
 
-const createTime = async ({ name, numberPhone, date, time }) => {
+const createTime = async ({ name, numberPhone, date, time, price }) => {
   const dateWithTime = Dayjs(`${date}T00:00:00.000Z`);
 
   const payload = {
@@ -11,6 +11,7 @@ const createTime = async ({ name, numberPhone, date, time }) => {
     time,
     nameCustumer: name,
     phoneCustumer: numberPhone,
+    price,
   };
 
   const response = await axios.post(`${import.meta.env.VITE_API_URL}/times/march`, payload, {
