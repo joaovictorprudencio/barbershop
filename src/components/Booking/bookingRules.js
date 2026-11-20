@@ -9,7 +9,7 @@ export const STEPS = [
   { id: 'checkout', label: 'Checkout' },
 ];
 
-export const MIN_WHATSAPP = '5585998160243';
+export const MIN_WHATSAPP = '5585999893505';
 export const WHATSAPP_MESSAGE =
   'Olá! Acabei de confirmar um agendamento e vou enviar o comprovante do Pix.';
 
