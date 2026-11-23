@@ -192,7 +192,7 @@ export const SERVICES = [
   {
     id: 'luzes',
     name: 'Luzes',
-    price: 50,
+    price: 60,
     slots: 1,
     category: CATEGORIES.PIGMENTACAO,
     image: tesouraImg,
